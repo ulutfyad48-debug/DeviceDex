@@ -1,0 +1,368 @@
+
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>ڈیزل پزلز - پریمیم</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { 
+            --bg: #05081a; --card: #121833; --accent: #ff0a54; 
+            --accent2: #00d9ff; --text: #ffffff; --success: #2ed573;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Noto Nastaliq Urdu', serif; background: var(--bg); color: var(--text); overflow-x: hidden; user-select: none; }
+        .container { max-width: 500px; margin: 0 auto; padding: 15px; }
+        
+        /* Help Button */
+        .help-btn {
+            position: fixed;
+            top: 15px;
+            right: 15px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(240, 147, 251, 0.4);
+            transition: 0.3s;
+            z-index: 1000;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        .help-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(240, 147, 251, 0.6);
+        }
+        
+        .hero-section { text-align: center; padding: 30px 10px; animation: fadeIn 1s ease-in; }
+        .site-title { font-family: 'Poppins', sans-serif; font-size: 2.8rem; background: linear-gradient(to right, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 15px; }
+        .main-image-container { width: 100%; border-radius: 25px; overflow: hidden; border: 3px solid var(--accent2); box-shadow: 0 0 25px rgba(0, 217, 255, 0.2); margin-bottom: 20px; }
+        .main-image-container img { width: 100%; display: block; }
+
+        .rules-box { background: rgba(255, 10, 84, 0.1); border: 1px solid var(--accent); border-radius: 15px; padding: 15px; margin-bottom: 20px; text-align: right; }
+        .rules-box h3 { color: var(--accent); margin-bottom: 8px; font-size: 1.1rem; }
+        .rules-box ul { list-style: none; font-size: 0.85rem; }
+        .rules-box li { margin-bottom: 5px; color: #ddd; }
+        .rules-box li::before { content: "⚠️ "; }
+
+        .start-btn { background: linear-gradient(45deg, var(--accent), #ff477e); color: white; font-size: 1.4rem; padding: 15px 35px; border-radius: 50px; border: none; cursor: pointer; width: 90%; font-weight: bold; box-shadow: 0 8px 15px rgba(255, 10, 84, 0.3); transition: 0.3s; }
+        .start-btn:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(255, 10, 84, 0.5); }
+        .start-btn:active { transform: scale(0.98); }
+
+        .puzzle-section { background: var(--card); padding: 25px; border-radius: 25px; text-align: center; border: 2px solid var(--accent2); margin-top: 10px; }
+        .ep-table { background: #000; padding: 12px; border-radius: 15px; margin: 15px 0; border: 1px solid var(--accent); }
+        .ep-row { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 8px 0; border-bottom: 1px solid #222; }
+        .ep-row:last-child { border-bottom: none; }
+
+        .timer-circle { width: 90px; height: 90px; border-radius: 50%; border: 5px solid var(--accent); line-height: 80px; font-size: 35px; margin: 0 auto 15px; color: var(--accent); font-weight: bold; text-shadow: 0 0 10px var(--accent); }
+        
+        .q-text { font-size: 1.2rem; background: rgba(0,0,0,0.4); padding: 20px; border-radius: 15px; margin-bottom: 20px; border-right: 5px solid var(--accent2); text-align: right; }
+        .btn { border: none; padding: 15px; border-radius: 12px; cursor: pointer; font-family: inherit; font-weight: bold; width: 100%; margin-top: 10px; font-size: 1.1rem; transition: 0.3s; }
+        .btn:hover { transform: translateY(-2px); }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; }
+        .btn-wa { background: #16a34a; color: white; text-decoration: none; display: inline-block; width: 48%; line-height: 45px; text-align: center; font-size: 0.9rem; border-radius: 10px; font-weight: bold; }
+        .btn-wa:hover { background: #15803d; }
+        .btn-opt { background: #1f2647; color: white; border: 1px solid #3d4675; margin: 8px 0; text-align: right; padding-right: 20px; }
+        .btn-opt:hover { background: #2a3254; border-color: var(--accent2); }
+        
+        .track-box { background: var(--success); color: #000; padding: 15px; font-size: 1.6rem; font-weight: bold; border-radius: 12px; margin: 15px 0; border: 2px solid #fff; }
+        input { width: 100%; padding: 15px; margin: 15px 0; background: #000; color: #fff; border: 1px solid var(--accent2); border-radius: 12px; text-align: center; font-size: 1.2rem; font-family: inherit; }
+        input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 10px rgba(255, 10, 84, 0.3); }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <a href="https://ulutfyad48-debug.github.io/Game-helper-/" target="_blank" class="help-btn">❓ مدد</a>
+
+    <div id="home-screen" class="container">
+        <div class="hero-section">
+            <h1 class="site-title">DIESEL PUZZLES</h1>
+            <div class="main-image-container">
+                <img src="https://drive.google.com/thumbnail?id=11c5Imzwd7sOJ_yEL6gvgDQy85WW0Mvsi&sz=w800" alt="Puzzle">
+            </div>
+
+            <div class="rules-box">
+                <h3>📜 گیم کے اصول:</h3>
+                <ul>
+                    <li>گیم کے دوران پیج <b>ریفریش</b> کرنے پر آپ آؤٹ ہو جائیں گے۔</li>
+                    <li>ایک بار ویب سائٹ سے نکلنے پر انٹری فیس ضائع ہو جائے گی۔</li>
+                    <li>ہر سوال کے لیے <b>90 سیکنڈ</b> کا وقت ملے گا۔</li>
+                    <li>غلط جواب دینے پر گیم فوری ختم ہو جائے گی۔</li>
+                </ul>
+            </div>
+
+            <button class="start-btn" onclick="openGame()">🎮 رولز منظور ہیں - شروع کریں</button>
+            <p style="margin-top: 15px; color: var(--accent2); font-weight: bold;">انٹری: 50 روپے | انعام: 300 روپے 🏆</p>
+            
+            <div style="margin-top: 25px; padding: 15px; background: rgba(0, 217, 255, 0.1); border: 1px solid var(--accent2); border-radius: 15px;">
+                <h3 style="color: var(--accent2); margin-bottom: 10px; font-size: 1.1rem;">❓ مدد چاہیے؟</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 10px;">گیم کھیلنے کا طریقہ نہیں پتہ? ہماری مدد کی ویب سائٹ دیکھیں:</p>
+                <a href="https://ulutfyad48-debug.github.io/Game-helper-/" target="_blank" style="display: inline-block; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 12px 25px; border-radius: 25px; text-decoration: none; font-weight: bold; box-shadow: 0 4px 15px rgba(240, 147, 251, 0.3);">📖 مدد کی ویب سائٹ</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="puzzle-screen" class="container" style="display:none;">
+        <div id="auth-section" class="puzzle-section">
+            <h2 style="margin-bottom: 10px; color: var(--accent);">🔐 ان لاک کریں</h2>
+            <div class="ep-table">
+                <div class="ep-row"><span>ایزی پیسہ 1:</span> <span style="color:var(--accent2)">03159226260</span></div>
+                <div class="ep-row"><span>ایزی پیسہ 2:</span> <span style="color:var(--accent2)">03359079528</span></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-bottom: 15px;">
+                <a href="https://wa.me/923159226260?text=سلام!%20پزل%20گیم%20کا%20کوڈ%20دے%20دیں" target="_blank" class="btn btn-wa">واٹس ایپ 1</a>
+                <a href="https://wa.me/923125540048?text=سلام!%20پزل%20گیم%20کا%20کوڈ%20دے%20دیں" target="_blank" class="btn btn-wa">واٹس ایپ 2</a>
+            </div>
+            <input type="text" id="accessCode" placeholder="کوڈ یہاں درج کریں...">
+            <button class="btn" style="background:var(--accent2); color:black;" onclick="verifyCode()">🎯 گیم شروع کریں</button>
+        </div>
+
+        <div id="game-section" class="puzzle-section" style="display:none;">
+            <div id="q-number" style="margin-bottom:10px; color:var(--accent2); font-weight: bold;">سوال 1 / 5</div>
+            <div class="timer-circle" id="timer">90</div>
+            <div id="q-content" class="q-text">لوڈنگ...</div>
+            <div id="options-box"></div>
+        </div>
+
+        <div id="success-section" class="puzzle-section" style="display:none;">
+            <h2 style="color:var(--success); font-size: 2rem;">✨ ویلڈن! ✨</h2>
+            <div class="track-box" id="tracking-id">---</div>
+            <p style="color: var(--accent2); margin-bottom: 15px; font-weight: bold;">آپ کا انعام: 300 روپے</p>
+            <p style="font-size: 0.9rem; margin-bottom: 10px;">انعام وصول کرنے کے لیے کسی بھی نمبر پر میسج کریں:</p>
+            <div style="display: flex; justify-content: space-between;">
+                <a id="wa-share-btn1" href="#" target="_blank" class="btn btn-wa">انعام وصول کریں 1</a>
+                <a id="wa-share-btn2" href="#" target="_blank" class="btn btn-wa">انعام وصول کریں 2</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ════════════════════════════════════════════════════════════════
+        // ⚙️ گیم کی سیٹنگز - یہاں تبدیلیاں کریں
+        // ════════════════════════════════════════════════════════════════
+        
+        // 1️⃣ ہر سوال کے لیے کتنے سیکنڈ کا وقت دینا ہے (مثلاً 60, 90, 120)
+        const QUESTION_TIME = 60;
+        
+        // 2️⃣ گیم کا کھلنے اور بند ہونے کا وقت
+        const GAME_TIMING = {
+            enabled: true,           // true = ٹائمنگ فعال | false = 24 گھنٹے کھلا
+            openHour: 0,             // کھلنے کا گھنٹہ (0-23)
+            openMinute: 20,          // کھلنے کا منٹ (0-59)
+            closeHour: 22,           // بند ہونے کا گھنٹہ (0-23)
+            closeMinute: 59          // بند ہونے کا منٹ (0-59)
+        };
+        
+        // ════════════════════════════════════════════════════════════════
+        
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby0tP_jq0dWhAXrLEWPgIM5qurT5EjICJHxGrQ-1aTJTB4XDcV7b_HnVADnTDaOUSBg9Q/exec";
+        
+        let puzzles = []; 
+        let currentIndex = 0; 
+        let clock = null; 
+        let secondsLeft = QUESTION_TIME; 
+        let userFullName = ""; 
+        let usedCode = ""; 
+        let gameStarted = false;
+
+        // گیم کا وقت چیک کرنے کا فنکشن
+        function isGameOpen() {
+            if (!GAME_TIMING.enabled) return true;
+            
+            const now = new Date();
+            const currentHour = now.getHours();
+            const currentMinute = now.getMinutes();
+            
+            const openTime = GAME_TIMING.openHour * 60 + GAME_TIMING.openMinute;
+            const closeTime = GAME_TIMING.closeHour * 60 + GAME_TIMING.closeMinute;
+            const currentTime = currentHour * 60 + currentMinute;
+            
+            return currentTime >= openTime && currentTime <= closeTime;
+        }
+
+        window.onbeforeunload = function() {
+            if(gameStarted) return "گیم جاری ہے، کیا آپ واقعی نکلنا چاہتے ہیں؟";
+        };
+
+        function openGame() {
+            // گیم کا وقت چیک کریں
+            if (!isGameOpen()) {
+                alert(`⏰ گیم ابھی بند ہے!\n\nکھلنے کا وقت: ${GAME_TIMING.openHour}:${String(GAME_TIMING.openMinute).padStart(2, '0')}\nبند ہونے کا وقت: ${GAME_TIMING.closeHour}:${String(GAME_TIMING.closeMinute).padStart(2, '0')}`);
+                return;
+            }
+            
+            document.getElementById('home-screen').style.display = 'none';
+            document.getElementById('puzzle-screen').style.display = 'block';
+        }
+
+        async function verifyCode() {
+            const code = document.getElementById('accessCode').value.trim();
+            if (!code) {
+                alert("کوڈ درج کریں!");
+                return;
+            }
+            
+            const btn = event.target; 
+            btn.disabled = true; 
+            btn.innerText = 'چیک ہو رہا ہے...';
+            
+            try {
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 15000);
+                
+                const res = await fetch(`${SCRIPT_URL}?action=verifyCode&code=${encodeURIComponent(code)}`, {
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+                const result = await res.text();
+                const trimmedResult = result.trim();
+                
+                if (trimmedResult === "SUCCESS") {
+                    usedCode = code;
+                    userFullName = prompt("اپنا نام لکھیں:");
+                    if (!userFullName || userFullName.trim() === "") { 
+                        alert("نام ضروری ہے!");
+                        btn.disabled = false;
+                        btn.innerText = '🎯 گیم شروع کریں';
+                        return; 
+                    }
+                    gameStarted = true;
+                    document.getElementById('auth-section').style.display = 'none';
+                    document.getElementById('game-section').style.display = 'block';
+                    loadPuzzles();
+                } else if (trimmedResult === "ALREADY_USED") {
+                    alert("یہ کوڈ پہلے استعمال ہو چکا ہے!");
+                    btn.disabled = false; 
+                    btn.innerText = '🎯 گیم شروع کریں';
+                } else if (trimmedResult === "INVALID_CODE") {
+                    alert("کوڈ غلط ہے!");
+                    btn.disabled = false; 
+                    btn.innerText = '🎯 گیم شروع کریں';
+                } else { 
+                    alert("کوڈ چیک کرنے میں مسئلہ آیا! دوبارہ کوشش کریں۔"); 
+                    btn.disabled = false; 
+                    btn.innerText = '🎯 گیم شروع کریں'; 
+                }
+            } catch (e) { 
+                console.error("Code verification error:", e);
+                alert("نیٹ ورک ایرر! انٹرنیٹ چیک کریں اور دوبارہ کوشش کریں۔"); 
+                btn.disabled = false; 
+                btn.innerText = '🎯 گیم شروع کریں';
+            }
+        }
+
+        async function loadPuzzles() {
+            try { 
+                const controller = new AbortController();
+                const timeoutId = setTimeout(() => controller.abort(), 15000);
+                
+                const res = await fetch(`${SCRIPT_URL}?action=getPuzzles`, {
+                    signal: controller.signal
+                });
+                clearTimeout(timeoutId);
+                const text = await res.text();
+                
+                console.log("Raw response:", text);
+                
+                puzzles = JSON.parse(text);
+                
+                if (!puzzles || puzzles.length === 0) {
+                    alert("سوالات لوڈ نہیں ہو سکے! ایڈمن سے رابطہ کریں۔");
+                    gameStarted = false;
+                    location.reload();
+                    return;
+                }
+                
+                console.log("Loaded puzzles:", puzzles);
+                displayQuestion(); 
+            } catch (e) { 
+                console.error("Puzzle loading error:", e);
+                alert("سوالات لوڈ نہیں ہو سکے! انٹرنیٹ چیک کریں۔");
+                gameStarted = false;
+                location.reload();
+            }
+        }
+
+        function displayQuestion() {
+            if (currentIndex >= 5) return finishGame();
+            
+            if (clock) clearInterval(clock);
+            
+            secondsLeft = QUESTION_TIME; 
+            document.getElementById('timer').innerText = secondsLeft;
+            
+            const puzzle = puzzles[currentIndex];
+            document.getElementById('q-number').innerText = `سوال ${currentIndex + 1} / 5`;
+            document.getElementById('q-content').innerText = puzzle.q;
+            
+            let html = "";
+            puzzle.opts.forEach(opt => {
+                if (opt && opt.trim() !== "") {
+                    const safeOpt = opt.replace(/'/g, "\\'").replace(/"/g, "&quot;");
+                    html += `<button class="btn btn-opt" onclick="checkAnswer('${safeOpt}')">${opt}</button>`;
+                }
+            });
+            document.getElementById('options-box').innerHTML = html;
+            
+            clock = setInterval(() => {
+                secondsLeft--; 
+                document.getElementById('timer').innerText = secondsLeft;
+                
+                if (secondsLeft <= 0) { 
+                    clearInterval(clock); 
+                    alert("⏰ وقت ختم ہو گیا! آپ آؤٹ ہو گئے۔"); 
+                    gameStarted = false;
+                    location.reload(); 
+                }
+            }, 1000);
+        }
+
+        function checkAnswer(selected) {
+            const correctAnswer = puzzles[currentIndex].ans;
+            
+            console.log("Selected:", selected, "Correct:", correctAnswer);
+            
+            if (selected === correctAnswer) { 
+                currentIndex++; 
+                displayQuestion(); 
+            } else { 
+                clearInterval(clock);
+                alert("❌ غلط جواب! آپ گیم سے باہر ہو گئے۔"); 
+                gameStarted = false;
+                location.reload(); 
+            }
+        }
+
+        async function finishGame() {
+            gameStarted = false;
+            clearInterval(clock);
+            document.getElementById('game-section').innerHTML = "<h3>✨ ڈیٹا محفوظ ہو رہا ہے...</h3>";
+            
+            try {
+                const res = await fetch(`${SCRIPT_URL}?action=saveWinner&name=${encodeURIComponent(userFullName)}&code=${encodeURIComponent(usedCode)}`);
+                const trackingId = await res.text();
+                
+                document.getElementById('game-section').style.display = 'none';
+                document.getElementById('tracking-id').innerText = trackingId;
+                
+                const winMsg = `سلام! میں نے پزل مکمل کر لیا ہے۔\nآئی ڈی: ${trackingId}\nنام: ${userFullName}\nانعام: 300 روپے`;
+                
+                document.getElementById('wa-share-btn1').href = `https://wa.me/923159226260?text=${encodeURIComponent(winMsg)}`;
+                document.getElementById('wa-share-btn2').href = `https://wa.me/923125540048?text=${encodeURIComponent(winMsg)}`;
+                
+                document.getElementById('success-section').style.display = 'block';
+            } catch (e) { 
+                console.error("Winner save error:", e);
+                alert("ڈیٹا محفوظ کرنے میں مسئلہ آیا۔ سکرین شاٹ لے لیں اور ایڈمن سے رابطہ کریں۔"); 
+            }
+        }
+    </script>
+</body>
+</html>
