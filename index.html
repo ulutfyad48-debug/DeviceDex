@@ -17,192 +17,1177 @@
             --shadow-heavy: 0 15px 35px rgba(0, 0, 0, 0.2);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { font-family: 'Noto Sans Arabic', sans-serif; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%); color: var(--dark); line-height: 1.6; overflow-x: hidden; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-        /* Header Styles */
-        .unique-header { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); color: white; padding: 1rem 5%; position: fixed; width: 100%; top: 0; z-index: 1000; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); }
-        .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; }
-        .logo-container { display: flex; align-items: center; gap: 15px; }
-        .logo-img { width: 70px; height: 70px; border-radius: 50%; border: 3px solid white; object-fit: cover; background: white; padding: 3px; }
-        .company-name { font-size: 1.8rem; font-weight: 800; }
-        .whatsapp-btn { background-color: #25D366; color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-        /* Hero Section */
-        .main-hero { margin-top: 100px; position: relative; overflow: hidden; height: 80vh; min-height: 600px; border-radius: 0 0 40px 40px; }
-        .hero-background { position: absolute; width: 100%; height: 100%; background: linear-gradient(rgba(0, 50, 100, 0.85), rgba(0, 30, 60, 0.9)); background-size: cover; background-position: center; animation: zoomEffect 20s infinite alternate; }
-        @keyframes zoomEffect { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
-        .hero-content { position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; color: white; padding: 0 5%; }
-        .hero-content h1 { font-size: 4rem; margin-bottom: 1.5rem; font-weight: 900; }
+        body {
+            font-family: 'Noto Sans Arabic', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
 
-        /* Stats Section */
-        .stats-section { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); padding: 80px 5%; margin: 50px 0; border-radius: 20px; color: white; }
-        .stats-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; text-align: center; }
-        .stat-number { font-size: 3.5rem; font-weight: 800; color: #ffdd00; }
+        .unique-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
 
-        /* Gallery Section */
-        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin: 3rem 0; }
-        .gallery-item { background: white; border-radius: 15px; overflow: hidden; box-shadow: var(--shadow); transition: 0.4s; min-height: 300px; }
-        .gallery-item:hover { transform: translateY(-10px); box-shadow: var(--shadow-heavy); }
-        .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-        /* Services & Packages */
-        .services-grid, .packages-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 3rem 0; }
-        .service-card, .package-card { background: white; border-radius: 20px; padding: 40px; box-shadow: var(--shadow); position: relative; }
-        .package-card.popular { border: 3px solid var(--accent); transform: scale(1.05); }
-        .popular-badge { position: absolute; top: 20px; left: -35px; background: var(--accent); color: white; padding: 8px 40px; transform: rotate(-45deg); font-weight: 800; }
-        .cta-button { background: var(--accent); color: white; padding: 18px 45px; border-radius: 50px; text-decoration: none; font-weight: 700; display: inline-block; cursor: pointer; border: none; }
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
 
-        /* Contact & Footer */
-        .contact-section { background: var(--dark); color: white; padding: 100px 5%; border-radius: 40px 40px 0 0; }
-        .form-control { width: 100%; padding: 18px; border-radius: 10px; margin-bottom: 20px; background: rgba(255, 255, 255, 0.1); color: white; border: 1px solid rgba(255, 255, 255, 0.2); }
-        .whatsapp-float { position: fixed; bottom: 30px; left: 30px; background: #25D366; color: white; width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; z-index: 1000; text-decoration: none; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5); }
-        .footer { background: #111; color: white; padding: 50px 5%; text-align: center; }
+        .logo-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            object-fit: cover;
+            background: white;
+            padding: 3px;
+        }
 
-        @media (max-width: 768px) { .hero-content h1 { font-size: 2.5rem; } .package-card.popular { transform: none; } }
+        .company-name {
+            font-size: 1.8rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .company-tagline {
+            font-size: 0.85rem;
+            opacity: 0.95;
+            margin-top: 3px;
+        }
+
+        .whatsapp-btn {
+            background-color: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 10px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(37, 211, 102, 0.5);
+        }
+
+        .main-hero {
+            margin-top: 100px;
+            position: relative;
+            overflow: hidden;
+            height: 80vh;
+            min-height: 600px;
+            border-radius: 0 0 40px 40px;
+        }
+
+        .hero-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 50, 100, 0.85), rgba(0, 30, 60, 0.9));
+            background-size: cover;
+            background-position: center;
+            animation: zoomEffect 20s infinite alternate;
+        }
+
+        @keyframes zoomEffect {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.8);
+            font-weight: 900;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            max-width: 900px;
+            margin: 0 auto 2.5rem;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.7);
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(to right, var(--accent), #ff8c42);
+            color: white;
+            padding: 18px 45px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(255, 107, 53, 0.6);
+        }
+
+        .secondary-button {
+            background: transparent;
+            border: 2px solid white;
+        }
+
+        .secondary-button:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 80px 5%;
+            margin: 50px 0;
+            border-radius: 20px;
+            color: white;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #ffdd00;
+        }
+
+        .stat-text {
+            font-size: 1.3rem;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 5rem 0 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.8rem;
+            color: var(--primary);
+            padding-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 120px;
+            height: 5px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 3px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+            max-width: 800px;
+            margin: 15px auto 0;
+        }
+
+        .gallery-section {
+            margin: 4rem 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 30px;
+            margin: 3rem 0;
+        }
+
+        .gallery-item {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            min-height: 300px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+            display: block;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .services-section {
+            background: linear-gradient(to bottom, #f8fafc 0%, #eef2f7 100%);
+            padding: 80px 0;
+            border-radius: 40px;
+            margin: 4rem 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 3rem 0;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 35px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border-top: 5px solid var(--primary);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .service-icon {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+
+        .service-card p {
+            color: #6c757d;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .service-features li {
+            padding: 8px 0;
+            padding-right: 30px;
+            position: relative;
+        }
+
+        .service-features li::before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .packages-section {
+            padding: 40px 0;
+        }
+
+        .packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 3rem 0;
+        }
+
+        .package-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .package-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .package-card.popular {
+            border: 3px solid var(--accent);
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 20px;
+            left: -35px;
+            background: linear-gradient(to right, var(--accent), #ff8c42);
+            color: white;
+            padding: 8px 40px;
+            transform: rotate(-45deg);
+            font-size: 0.9rem;
+            font-weight: 800;
+            box-shadow: 0 3px 10px rgba(255, 107, 53, 0.3);
+        }
+
+        .package-speed {
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin: 15px 0;
+        }
+
+        .package-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .package-duration {
+            color: #6c757d;
+            font-size: 1rem;
+        }
+
+        .package-features {
+            list-style: none;
+            margin: 25px 0;
+            text-align: right;
+        }
+
+        .package-features li {
+            padding: 12px 0;
+            border-bottom: 1px dashed #eee;
+            position: relative;
+            padding-right: 30px;
+        }
+
+        .package-features li::before {
+            content: "✓";
+            position: absolute;
+            right: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .why-choose-us {
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f0ff 100%);
+            padding: 80px 0;
+            border-radius: 40px;
+            margin: 4rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .contact-section {
+            background: linear-gradient(135deg, var(--dark) 0%, #16213e 100%);
+            color: white;
+            padding: 100px 5%;
+            margin-top: 80px;
+            border-radius: 40px 40px 0 0;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-info h3 {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .contact-detail i {
+            background: linear-gradient(to right, var(--accent), #ff8c42);
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.07);
+            padding: 40px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 18px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1rem;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 70px 5% 30px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            text-align: right;
+        }
+
+        .footer-section h4 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--secondary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            text-align: center;
+        }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: #25D366;
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            z-index: 1000;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15);
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+            }
+            .main-hero {
+                margin-top: 140px;
+                height: 70vh;
+            }
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+            }
+            .services-grid, .packages-grid, .features-grid {
+                grid-template-columns: 1fr;
+            }
+            .package-card.popular {
+                transform: none;
+            }
+            .stats-container {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/923499225325?text=HassanZeb%20SmartLink%20Services%20سے%20رابطہ%20ہے" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
 
-    <a href="https://wa.me/923499225325" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
-
+    <!-- Header -->
     <header class="unique-header">
         <div class="header-content">
             <div class="logo-container">
-                <img src="https://via.placeholder.com/70" class="logo-img">
+                <img src="https://lh3.googleusercontent.com/d/1J2oK1zlysJzYx3lyC2O-g-1lQd69_UR3" class="logo-img" id="mainLogo">
                 <div>
-                    <div class="company-name">HassanZeb SmartLink</div>
+                    <div class="company-name">HassanZeb SmartLink Services</div>
+                    <div class="company-tagline">پشاور کا نمبر 1 انٹرنیٹ اور ڈیجیٹل کیبل سروس فراہم کنندہ</div>
                 </div>
             </div>
-            <a href="https://wa.me/923499225325" class="whatsapp-btn"><i class="fab fa-whatsapp"></i> واٹس ایپ</a>
+            <a href="https://wa.me/923499225325?text=HassanZeb%20SmartLink%20Services%20سے%20رابطہ%20ہے" class="whatsapp-btn" target="_blank">
+                <i class="fab fa-whatsapp"></i> واٹس ایپ
+            </a>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section class="main-hero" id="home">
         <div class="hero-background"></div>
         <div class="hero-content">
             <h1>HassanZeb SmartLink Services</h1>
-            <p>پشاور کا نمبر 1 انٹرنیٹ اور ڈیجیٹل کیبل سروس فراہم کنندہ</p>
-            <div style="margin-top: 20px;">
+            <p>پشاور کا نمبر 1 انٹرنیٹ اور ڈیجیٹل کیبل سروس فراہم کنندہ<br>5 Mbps سے 70 Mbps تیز رفتار انٹرنیٹ | 200+ HD چینلز | Google Global Cache</p>
+            <div class="hero-buttons">
                 <a href="#contact" class="cta-button">ابھی آرڈر کریں</a>
+                <a href="#packages" class="cta-button secondary-button">پیکیجز دیکھیں</a>
             </div>
         </div>
     </section>
 
+    <!-- Stats Section -->
     <section class="stats-section">
         <div class="stats-container">
-            <div class="stat-item"><div class="stat-number">10+</div><div>سالوں کا تجربہ</div></div>
-            <div class="stat-item"><div class="stat-number">5000+</div><div>مطمئن گاہک</div></div>
-            <div class="stat-item"><div class="stat-number">24/7</div><div>سپورٹ</div></div>
+            <div class="stat-item">
+                <div class="stat-number">10+</div>
+                <div class="stat-text">سالوں کا تجربہ</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">5000+</div>
+                <div class="stat-text">مطمئن گاہک</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">24/7</div>
+                <div class="stat-text">کسٹمر سپورٹ</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">99%</div>
+                <div class="stat-text">سروس اپ ٹائم</div>
+            </div>
         </div>
     </section>
 
-    <div class="container" style="max-width: 1400px; margin: 0 auto; padding: 0 5%;">
-        <section id="gallery">
-            <div style="text-align: center; margin: 50px 0;">
+    <div class="container">
+        <!-- Gallery Section -->
+        <section class="gallery-section" id="gallery">
+            <div class="section-title">
                 <h2>ہماری سروسز کی تصاویر</h2>
-                <p>گوگل ڈرائیو سے خودکار اپ ڈیٹ ہونے والی گیلری</p>
+                <p class="section-subtitle">ہمارے معیاری انٹرنیٹ اور ڈیجیٹل کیبل سروسز</p>
             </div>
             <div class="gallery-grid" id="galleryContainer">
-                <p style="text-align: center; width: 100%;">تصاویر لوڈ ہو رہی ہیں، براہ کرم انتظار کریں...</p>
+                <!-- Images will be loaded dynamically from Google Drive -->
             </div>
         </section>
 
-        <section id="services" style="margin-top: 80px;">
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-bolt" style="font-size: 3rem; color: var(--primary);"></i>
-                    <h3>ہائی سپیڈ انٹرنیٹ</h3>
-                    <p>5 Mbps سے 70 Mbps تک تیز رفتار فائبر انٹرنیٹ۔</p>
+        <!-- Services Section -->
+        <section class="services-section" id="services">
+            <div class="container">
+                <div class="section-title">
+                    <h2>ہماری سروسز</h2>
+                    <p class="section-subtitle">ہماری بہترین اور جدید ترین سروسز سے لطف اندوز ہوں</p>
                 </div>
-                <div class="service-card">
-                    <i class="fas fa-tv" style="font-size: 3rem; color: var(--primary);"></i>
-                    <h3>ڈیجیٹل کیبل ٹی وی</h3>
-                    <p>200+ Full HD چینلز اور STAR Digital نیٹ ورک۔</p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>ہائی سپیڈ انٹرنیٹ</h3>
+                        <p>5 Mbps سے 70 Mbps تک تیز رفتار انٹرنیٹ۔ YouTube، Netflix اور تمام آن لائن سرگرمیوں کے لیے بہترین۔</p>
+                        <ul class="service-features">
+                            <li>Google Global Cache</li>
+                            <li>24/7 سپورٹ</li>
+                            <li>Unlimited GB</li>
+                            <li>No Throttling</li>
+                            <li>Low Latency</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-tv"></i>
+                        </div>
+                        <h3>ڈیجیٹل کیبل ٹی وی</h3>
+                        <p>200+ Full HD چینلز۔ نیوز، ڈرامہ، سپورٹس، HD موویز۔ STAR Digital Cable Network۔</p>
+                        <ul class="service-features">
+                            <li>HD چینلز</li>
+                            <li>بین الاقوامی چینلز</li>
+                            <li>کریکل فری تصویر</li>
+                            <li>ہر قسم کے ڈرامے</li>
+                            <li>24/7 ٹیکنیکل سپورٹ</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-wifi"></i>
+                        </div>
+                        <h3>فائبر آپٹک نیٹ ورک</h3>
+                        <p>جدید ترین فائبر آپٹک ٹیکنالوجی۔ بلا تعطل کنکٹیویٹی۔ Google Global Cache Nodes۔</p>
+                        <ul class="service-features">
+                            <li>High Reliability</li>
+                            <li>Low Latency</li>
+                            <li>Weather Resistant</li>
+                            <li>Future Proof</li>
+                            <li>High Bandwidth</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>24/7 کسٹمر سپورٹ</h3>
+                        <p>ہمارا تعاون ٹیم ہر وقت آپ کی خدمت کے لیے موجود ہے۔ فوری مسئلہ حل۔</p>
+                        <ul class="service-features">
+                            <li>24 گھنٹے سپورٹ</li>
+                            <li>فوری مسئلہ حل</li>
+                            <li>آن لائن ہیلپ</li>
+                            <li>فون اور واٹس ایپ</li>
+                            <li>فیلڈ ٹیکنیشن</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section id="packages">
+        <!-- Packages Section -->
+        <section class="packages-section" id="packages">
+            <div class="section-title">
+                <h2>انٹرنیٹ پیکیجز</h2>
+                <p class="section-subtitle">آپ کی ضرورت کے مطابق بہترین انٹرنیٹ پیکیجز</p>
+            </div>
             <div class="packages-grid">
                 <div class="package-card">
-                    <h2>5 Mbps</h2>
-                    <h3>Rs. 1,500 / ماہانہ</h3>
-                    <ul style="list-style: none; margin: 20px 0;"><li>Unlimited GB</li><li>24/7 Support</li></ul>
-                    <a href="#contact" class="cta-button">آرڈر کریں</a>
+                    <div class="package-speed">5 Mbps</div>
+                    <div class="package-price">Rs. 1,500 / مہینہ</div>
+                    <div class="package-duration">30 دن</div>
+                    <ul class="package-features">
+                        <li>YouTube Streaming</li>
+                        <li>براؤزنگ</li>
+                        <li>24/7 سپورٹ</li>
+                        <li>Unlimited GB</li>
+                        <li>2 Devices</li>
+                        <li>Basic Support</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="padding: 15px 30px; font-size: 1rem; margin-top: 20px;">آرڈر کریں</a>
+                </div>
+                <div class="package-card">
+                    <div class="package-speed">10 Mbps</div>
+                    <div class="package-price">Rs. 1,800 / مہینہ</div>
+                    <div class="package-duration">30 دن</div>
+                    <ul class="package-features">
+                        <li>HD Streaming</li>
+                        <li>تیز ڈاؤن لوڈ</li>
+                        <li>Multi Device</li>
+                        <li>Unlimited GB</li>
+                        <li>4 Devices</li>
+                        <li>Priority Support</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="padding: 15px 30px; font-size: 1rem; margin-top: 20px;">آرڈر کریں</a>
                 </div>
                 <div class="package-card popular">
                     <div class="popular-badge">مقبول ترین</div>
-                    <h2>15 Mbps</h2>
-                    <h3>Rs. 2,700 / ماہانہ</h3>
-                    <ul style="list-style: none; margin: 20px 0;"><li>Unlimited GB</li><li>Gaming Cache</li></ul>
-                    <a href="#contact" class="cta-button">آرڈر کریں</a>
+                    <div class="package-speed">15 Mbps</div>
+                    <div class="package-price">Rs. 2,700 / مہینہ</div>
+                    <div class="package-duration">30 دن</div>
+                    <ul class="package-features">
+                        <li>Full HD Streaming</li>
+                        <li>آن لائن گیمنگ</li>
+                        <li>5+ Devices</li>
+                        <li>Unlimited GB</li>
+                        <li>Google Cache</li>
+                        <li>Priority Support</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="padding: 15px 30px; font-size: 1rem; margin-top: 20px;">آرڈر کریں</a>
+                </div>
+                <div class="package-card">
+                    <div class="package-speed">24 Mbps</div>
+                    <div class="package-price">Rs. 3,700 / مہینہ</div>
+                    <div class="package-duration">30 دن</div>
+                    <ul class="package-features">
+                        <li>4K Streaming</li>
+                        <li>Heavy Download</li>
+                        <li>10+ Devices</li>
+                        <li>Unlimited GB</li>
+                        <li>Priority Support</li>
+                        <li>Business Grade</li>
+                    </ul>
+                    <a href="#contact" class="cta-button" style="padding: 15px 30px; font-size: 1rem; margin-top: 20px;">آرڈر کریں</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="why-choose-us">
+            <div class="container">
+                <div class="section-title">
+                    <h2>ہمیں کیوں منتخب کریں؟</h2>
+                    <p class="section-subtitle">ہمارے پاس وہ سب کچھ ہے جو آپ کی ضرورت ہے</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>تیز ترین سپیڈ</h3>
+                        <p>ہماری فائبر آپٹک نیٹ ورک پشاور میں تیز ترین انٹرنیٹ سپیڈ فراہم کرتی ہے۔</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>قابل اعتماد سروس</h3>
+                        <p>10 سالوں سے معیاری سروس فراہم کر رہے ہیں۔ 99% سروس اپ ٹائم۔</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3>فری انسٹالیشن</h3>
+                        <p>نئے کنکشن کے لیے مفت انسٹالیشن اور سیٹ اپ۔</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>24/7 سپورٹ</h3>
+                        <p>ہمارا سپورٹ ٹیم ہر وقت آپ کی مدد کے لیے موجود ہے۔</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h3>قابل برداشت قیمتیں</h3>
+                        <p>ہر بجٹ کے لیے مناسب قیمتوں پر بہترین سروسز۔</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <h3>بہترین معیار</h3>
+                        <p>ہماری تمام سروسز اعلی معیار کی حامل ہیں۔</p>
+                    </div>
                 </div>
             </div>
         </section>
     </div>
 
+    <!-- Contact Section -->
     <section class="contact-section" id="contact">
-        <div style="max-width: 800px; margin: 0 auto;">
-            <h2 style="text-align: center; margin-bottom: 40px;">رابطہ اور آرڈر فارم</h2>
-            <form id="orderForm">
-                <input type="text" class="form-control" id="name" placeholder="آپ کا نام" required>
-                <input type="tel" class="form-control" id="phone" placeholder="فون نمبر" required>
-                <select class="form-control" id="service">
-                    <option>15 Mbps پیکیج</option>
-                    <option>ڈیجیٹل کیبل ٹی وی</option>
-                </select>
-                <button type="submit" class="cta-button" style="width: 100%;">واٹس ایپ پر آرڈر بھیجیں</button>
-            </form>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>ہم سے رابطہ کریں</h3>
+                <div class="contact-detail">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <h4 style="margin-bottom: 5px;">فون نمبر</h4>
+                        <p><strong>0349-9225325</strong> (واٹس ایپ)</p>
+                        <p><strong>091-2964660</strong> (آفس)</p>
+                        <p style="color: #25D366; margin-top: 5px;"><i class="fab fa-whatsapp"></i> واٹس ایپ پر کلک کریں</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4 style="margin-bottom: 5px;">آفس کا پتہ</h4>
+                        <p>مین جی ٹی روڈ، ترناب فارم، وارث خان<br>ہنی مارکیٹ، پشاور</p>
+                        <p style="margin-top: 5px;"><i class="fas fa-clock"></i> ہفتے کے سات دن صبح 9 بجے سے رات 9 بجے تک</p>
+                    </div>
+                </div>
+                <div class="contact-detail">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4 style="margin-bottom: 5px;">ای میل</h4>
+                        <p>hassanzeb047@gmail.com</p>
+                        <p style="margin-top: 5px;"><i class="fas fa-reply"></i> 24 گھنٹے کے اندر جواب</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <h3 style="color: white; margin-bottom: 25px;">آرڈر فارم</h3>
+                <form id="orderForm">
+                    <input type="text" class="form-control" placeholder="آپ کا نام" required id="customerName">
+                    <input type="tel" class="form-control" placeholder="فون نمبر" required id="customerPhone">
+                    <input type="text" class="form-control" placeholder="مکمل پتہ" required id="customerAddress">
+                    <select class="form-control" required id="serviceSelect">
+                        <option value="">سروس منتخب کریں</option>
+                        <option value="5mbps">5 Mbps - Rs. 1,500</option>
+                        <option value="10mbps">10 Mbps - Rs. 1,800</option>
+                        <option value="15mbps">15 Mbps - Rs. 2,700</option>
+                        <option value="24mbps">24 Mbps - Rs. 3,700</option>
+                        <option value="cable">ڈیجیٹل کیبل ٹی وی</option>
+                        <option value="both">انٹرنیٹ + کیبل ٹی وی</option>
+                    </select>
+                    <textarea class="form-control" placeholder="مزید معلومات / سوالات" rows="4" id="customerMessage"></textarea>
+                    <button type="submit" class="cta-button" style="width: 100%; padding: 18px;">آرڈر جمع کروائیں</button>
+                </form>
+            </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="footer">
-        <p>© 2024 HassanZeb SmartLink Services. تمام حقوق محفوظ ہیں</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>HassanZeb SmartLink</h4>
+                <p>پشاور کا نمبر 1 انٹرنیٹ اور ڈیجیٹل کیبل سروس فراہم کنندہ۔ معیاری سروسز اور کسٹمر کی خوشی ہماری اولین ترجیح ہے۔</p>
+                <div class="social-icons">
+                    <a href="https://wa.me/923499225325" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="mailto:hassanzeb047@gmail.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="tel:+923499225325" title="Call"><i class="fas fa-phone-alt"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>کاروباری اوقات</h4>
+                <p><strong>پیر تا جمعہ:</strong> 9AM - 9PM</p>
+                <p><strong>ہفتہ:</strong> 9AM - 7PM</p>
+                <p><strong>اتوار:</strong> 10AM - 5PM</p>
+                <p style="margin-top: 15px;"><strong>ایمرجنسی:</strong> 24/7 واٹس ایپ سپورٹ</p>
+            </div>
+            <div class="footer-section">
+                <h4>تازہ ترین پیشکشیں</h4>
+                <p><strong>نئے کنکشن:</strong> پہلے مہینے 20% رعایت</p>
+                <p><strong>ریفرل بونس:</strong> دوست کو ریفر کریں، دونوں کو 10% رعایت</p>
+                <p><strong>سالانہ پیکیج:</strong> 2 مہینے مفت</p>
+                <p style="margin-top: 10px;"><i class="fas fa-star" style="color: #ffc107;"></i> تمام پیکیجز میں Unlimited GB</p>
+            </div>
+            <div class="footer-section">
+                <h4>تیز لنکس</h4>
+                <p><a href="#home" style="color: white; text-decoration: none;">ہوم</a></p>
+                <p><a href="#services" style="color: white; text-decoration: none;">سروسز</a></p>
+                <p><a href="#packages" style="color: white; text-decoration: none;">پیکیجز</a></p>
+                <p><a href="#gallery" style="color: white; text-decoration: none;">گیلری</a></p>
+                <p><a href="#contact" style="color: white; text-decoration: none;">رابطہ</a></p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2024 HassanZeb SmartLink Services. تمام حقوق محفوظ ہیں | <a href="tel:+923499225325" style="color: var(--secondary); text-decoration: none;">0349-9225325</a></p>
+        </div>
     </footer>
 
+    <!-- JavaScript -->
     <script>
+        // Google Drive API configuration
         const API_KEY = 'AIzaSyC8GfeNEk_ugD9TG_5CGyUbwfvFQ88YJts';
-        const FOLDER_ID = '1B8cu6s2o0_XeYxgMzoYCSj3vCFajswac';
+        const FOLDER_IDS = ['1B8cu6s2o0_XeYxgMzoYCSj3vCFajswac'];
 
-        async function fetchDriveImages() {
-            const container = document.getElementById('galleryContainer');
+        // Fixed logo image URL only
+        const LOGO_IMAGE_URL = 'https://lh3.googleusercontent.com/d/1J2oK1zlysJzYx3lyC2O-g-1lQd69_UR3';
+
+        // Function to load images from Google Drive
+        async function loadGalleryImages() {
+            const galleryContainer = document.getElementById('galleryContainer');
+            
+            // Show loading state
+            galleryContainer.innerHTML = '<div class="image-placeholder">تصویریں لوڈ ہو رہی ہیں...</div>';
+            
             try {
-                // گوگل ڈرائیو سے امیجز کی لسٹ حاصل کرنا
-                const url = `https://www.googleapis.com/drive/v3/files?q='${FOLDER_ID}'+in+parents+and+mimeType+contains+'image/'&key=${API_KEY}&fields=files(id,name)`;
-                const response = await fetch(url);
-                const data = await response.json();
-
-                if (data.files && data.files.length > 0) {
-                    container.innerHTML = ''; // لوڈنگ ٹیکسٹ ختم کریں
-                    data.files.forEach(file => {
-                        const div = document.createElement('div');
-                        div.className = 'gallery-item';
-                        div.innerHTML = `<img src="https://drive.google.com/uc?export=view&id=${file.id}" alt="${file.name}" loading="lazy">`;
-                        container.appendChild(div);
-                    });
-                } else {
-                    container.innerHTML = '<p>فولڈر میں کوئی تصویر نہیں ملی۔</p>';
+                let allImages = [];
+                
+                // Fetch images from all folder IDs
+                for (const folderId of FOLDER_IDS) {
+                    const response = await fetch(
+                        `https://www.googleapis.com/drive/v3/files?q='${folderId}'+in+parents+and+mimeType+contains+'image/'&key=${API_KEY}&fields=files(id,name,thumbnailLink,imageMediaMetadata)`
+                    );
+                    
+                    if (response.ok) {
+                        const data = await response.json();
+                        if (data.files && data.files.length > 0) {
+                            // Get direct image URLs
+                            const folderImages = data.files.map(file => ({
+                                id: file.id,
+                                name: file.name,
+                                url: `https://drive.google.com/uc?export=view&id=${file.id}`,
+                                thumbnail: `https://drive.google.com/thumbnail?id=${file.id}&sz=w320-h300`
+                            }));
+                            allImages = [...allImages, ...folderImages];
+                        }
+                    }
                 }
+                
+                // Clear gallery container
+                galleryContainer.innerHTML = '';
+                
+                // If no images found from API, show message
+                if (allImages.length === 0) {
+                    galleryContainer.innerHTML = `
+                        <div style="grid-column: 1/-1; text-align: center; padding: 50px;">
+                            <div style="font-size: 2rem; color: #666; margin-bottom: 20px;">
+                                <i class="fas fa-images"></i>
+                            </div>
+                            <h3 style="color: #666;">فی الحال کوئی تصویر دستیاب نہیں</h3>
+                            <p style="color: #999;">جیسے ہی نئی تصویریں اپ لوڈ ہوں گی، یہاں نظر آئیں گی</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Display images from Google Drive (maximum 8 images)
+                const maxImages = Math.min(allImages.length, 8);
+                for (let i = 0; i < maxImages; i++) {
+                    const image = allImages[i];
+                    const galleryItem = document.createElement('div');
+                    galleryItem.className = 'gallery-item';
+                    
+                    const img = document.createElement('img');
+                    img.src = image.thumbnail || image.url;
+                    img.alt = image.name || `Gallery Image ${i + 1}`;
+                    img.loading = 'lazy';
+                    img.title = image.name || '';
+                    
+                    // Add error handling
+                    img.onerror = function() {
+                        this.onerror = null;
+                        this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="320" height="300" viewBox="0 0 320 300"><rect width="320" height="300" fill="%23f5f7fa"/><text x="160" y="150" font-family="Arial" font-size="18" text-anchor="middle" fill="%23666">تصویر نہیں لوڈ ہوئی</text></svg>';
+                    };
+                    
+                    galleryItem.appendChild(img);
+                    galleryContainer.appendChild(galleryItem);
+                }
+                
             } catch (error) {
-                console.error("Error loading images:", error);
-                container.innerHTML = '<p>تصاویر لوڈ کرنے میں مسئلہ پیش آیا۔ براہ کرم اپنی API Key چیک کریں۔</p>';
+                console.error('Error loading images:', error);
+                
+                // Show error message
+                galleryContainer.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 50px;">
+                        <div style="font-size: 2rem; color: #ff6b35; margin-bottom: 20px;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <h3 style="color: #666;">تصویریں لوڈ نہیں ہو سکیں</h3>
+                        <p style="color: #999;">براہ کرم کنکشن چیک کریں اور دوبارہ کوشش کریں</p>
+                        <button onclick="loadGalleryImages()" style="margin-top: 20px; background: var(--primary); color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">
+                            دوبارہ کوشش کریں
+                        </button>
+                    </div>
+                `;
             }
         }
 
-        // واٹس ایپ آرڈر فارم فنکشن
+        // Function to set logo image
+        function setLogoImage() {
+            const logoImg = document.getElementById('mainLogo');
+            if (logoImg) {
+                logoImg.src = LOGO_IMAGE_URL;
+                logoImg.onerror = function() {
+                    this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" viewBox="0 0 70 70"><rect width="70" height="70" rx="35" fill="%230066cc"/><text x="35" y="38" font-family="Arial" font-size="14" text-anchor="middle" fill="white">HZS</text></svg>';
+                };
+            }
+        }
+
+        // Function to handle order form submission
         document.getElementById('orderForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const service = document.getElementById('service').value;
-            const msg = `نیا آرڈر:%0Aنام: ${name}%0Aفون: ${phone}%0Aسروس: ${service}`;
-            window.open(`https://wa.me/923499225325?text=${msg}`, '_blank');
+            const name = document.getElementById('customerName').value;
+            const phone = document.getElementById('customerPhone').value;
+            const address = document.getElementById('customerAddress').value;
+            const service = document.getElementById('serviceSelect').options[document.getElementById('serviceSelect').selectedIndex].text;
+            const message = document.getElementById('customerMessage').value;
+            
+            const whatsappMessage = `HassanZeb SmartLink Services - نیا آرڈر%0A%0A👤 نام: ${name}%0A📞 فون: ${phone}%0A📍 پتہ: ${address}%0A🛠️ سروس: ${service}%0A📝 مزید معلومات: ${message || 'نہیں'}%0A%0Aبراہ کرم مجھ سے رابطہ کریں!`;
+            
+            window.open(`https://wa.me/923499225325?text=${whatsappMessage}`, '_blank');
+            this.reset();
         });
 
-        // پیج لوڈ ہوتے ہی امیجز فیچ کریں
-        window.onload = fetchDriveImages;
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if(target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Load images when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setLogoImage();
+            loadGalleryImages();
+            
+            // Optionally refresh images every 5 minutes
+            setInterval(loadGalleryImages, 5 * 60 * 1000);
+        });
     </script>
 </body>
 </html>
