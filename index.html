@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TurboShare - تیز ترین فائل شیئرنگ</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-bolt"></i>
+                <span>TurboShare</span>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="active"><i class="fas fa-home"></i> ہوم</a>
+                <a href="#features"><i class="fas fa-star"></i> خصوصیات</a>
+                <a href="#how-to"><i class="fas fa-question-circle"></i> استعمال</a>
+            </div>
+        </nav>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-content">
+                <h1>📁 فائل شیئرنگ کا تیز ترین طریقہ</h1>
+                <p class="subtitle">موبائل ↔ کمپیوٹر ↔ موبائل | مکمل محفوظ | تیز رفتار</p>
+                
+                <div class="transfer-box">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" id="sendTab">
+                            <i class="fas fa-upload"></i> فائل بھیجیں
+                        </button>
+                        <button class="tab-btn" id="receiveTab">
+                            <i class="fas fa-download"></i> فائل وصول کریں
+                        </button>
+                    </div>
+
+                    <!-- Send File Section -->
+                    <div class="tab-content active" id="sendSection">
+                        <div class="file-drop-area" id="dropArea">
+                            <i class="fas fa-cloud-upload-alt fa-3x"></i>
+                            <h3>فائل یہاں ڈراپ کریں</h3>
+                            <p>یا کلک کر کے فائل منتخب کریں</p>
+                            <input type="file" id="fileInput" multiple>
+                            <p class="file-info">زیادہ سے زیادہ سائز: 2GB</p>
+                        </div>
+
+                        <div class="selected-files" id="selectedFiles">
+                            <!-- Selected files will appear here -->
+                        </div>
+
+                        <div class="connection-section">
+                            <div class="input-group">
+                                <label for="roomCode"><i class="fas fa-link"></i> کنکشن کوڈ:</label>
+                                <div class="input-with-btn">
+                                    <input type="text" id="roomCode" placeholder="کنکشن کوڈ درج کریں">
+                                    <button class="btn-secondary" id="generateCode">
+                                        <i class="fas fa-random"></i> نیا کوڈ
+                                    </button>
+                                </div>
+                                <p class="help-text">یہ کوڈ دوسرے ڈیوائس پر درج کریں</p>
+                            </div>
+
+                            <button class="btn-primary btn-large" id="startTransfer">
+                                <i class="fas fa-play"></i> ٹرانسفر شروع کریں
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Receive File Section -->
+                    <div class="tab-content" id="receiveSection">
+                        <div class="receive-box">
+                            <i class="fas fa-qrcode fa-3x"></i>
+                            <h3>کنکشن کوڈ درج کریں</h3>
+                            <div class="input-group">
+                                <input type="text" id="receiverCode" placeholder="کنکشن کوڈ یہاں لکھیں">
+                                <button class="btn-primary" id="connectToSender">
+                                    <i class="fas fa-plug"></i> کنیکٹ ہوں
+                                </button>
+                            </div>
+
+                            <div class="qr-section">
+                                <div class="qr-code" id="qrCode">
+                                    <!-- QR Code will be generated here -->
+                                </div>
+                                <p>QR کوڈ اسکین کریں</p>
+                            </div>
+
+                            <div class="receive-status">
+                                <h4><i class="fas fa-spinner fa-spin"></i> کنیکشن کا انتظار ہے...</h4>
+                                <div class="progress-container">
+                                    <div class="progress-bar" id="receiveProgress"></div>
+                                </div>
+                                <p class="status-text" id="receiveStatus">کوئی کنیکشن نہیں</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats">
+                    <div class="stat-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>مکمل محفوظ</h3>
+                        <p>اینڈ-ٹو-اینڈ انکرپشن</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-bolt"></i>
+                        <h3>تیز رفتار</h3>
+                        <p>WebRTC ٹیکنالوجی</p>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-globe"></i>
+                        <h3>براؤزر پر چلے</h3>
+                        <p>کوئی ایپ انسٹال نہیں</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section id="features" class="features">
+            <h2><i class="fas fa-crown"></i> خصوصیات</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h3>موبائل سے موبائل</h3>
+                    <p>کسی بھی موبائل ڈیوائس سے دوسرے موبائل تک فائل شیئر کریں</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-laptop"></i>
+                    <h3>پی سی سے موبائل</h3>
+                    <p>کمپیوٹر سے براہ راست موبائل میں فائل بھیجیں</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-images"></i>
+                    <h3>تمام فائل اقسام</h3>
+                    <p>تصاویر، ویڈیوز، دستاویزات، APK فائلیں</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-lock"></i>
+                    <h3>مکمل پرائیویسی</h3>
+                    <p>سرور پر فائلیں محفوظ نہیں ہوتیں</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- How-to Section -->
+        <section id="how-to" class="how-to">
+            <h2><i class="fas fa-graduation-cap"></i> کیسے استعمال کریں؟</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>فائل منتخب کریں</h3>
+                    <p>فائل بھیجیں ٹیب پر کلک کریں اور فائل منتخب کریں</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>کنیکشن کوڈ بنائیں</h3>
+                    <p>نیا کوڈ بٹن پر کلک کریں یا اپنا کوڈ استعمال کریں</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>دوسرے ڈیوائس سے کنیکٹ ہوں</h3>
+                    <p>کنیکشن کوڈ دوسرے ڈیوائس پر درج کریں</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>فائل ٹرانسفر کریں</h3>
+                    <p>ٹرانسفر شروع کریں بٹن دبائیں اور فائل بھیجیں</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Transfer Status -->
+        <div class="transfer-status" id="transferStatus">
+            <h3><i class="fas fa-exchange-alt"></i> ٹرانسفر سٹیٹس</h3>
+            <div class="status-details">
+                <div class="status-item">
+                    <span>فائل:</span>
+                    <span id="currentFile">کوئی فائل نہیں</span>
+                </div>
+                <div class="status-item">
+                    <span>پروگرس:</span>
+                    <span id="transferProgress">0%</span>
+                </div>
+                <div class="status-item">
+                    <span>رفتار:</span>
+                    <span id="transferSpeed">0 MB/s</span>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-bar" id="transferProgressBar"></div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2024 TurboShare | تمام حقوق محفوظ ہیں</p>
+            <p class="footer-links">
+                <a href="#privacy">پرائیویسی پالیسی</a> | 
+                <a href="#terms">شرائط و ضوابط</a> | 
+                <a href="#contact">رابطہ</a>
+            </p>
+        </footer>
+    </div>
+
+    <!-- Modals -->
+    <div class="modal" id="successModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <i class="fas fa-check-circle success-icon"></i>
+            <h3>کامیابی!</h3>
+            <p id="successMessage">فائل کامیابی سے بھیج دی گئی</p>
+            <button class="btn-primary" id="closeSuccessModal">ٹھیک ہے</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.5.0/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.0/build/qrcode.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
