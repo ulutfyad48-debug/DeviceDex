@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quick Bite · pro ordering</title>
+  
+  <!-- Poppins + Font Awesome (professional kit) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
+  <style>
+    /* --- MODERN RESET & VARIABLES --- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #ff4757;           /* signature red */
+      --primary-dark: #e84118;
+      --secondary: #2ed573;
+      --dark: #1e272e;
+      --gray-dark: #2f3542;
+      --gray: #747d8c;
+      --light: #f1f2f6;
+      --white: #ffffff;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+      --shadow-lg: 0 20px 32px -8px rgba(0, 0, 0, 0.2);
+      --radius-md: 20px;
+      --radius-lg: 28px;
+      --transition: all 0.2s ease;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light);
+      color: var(--dark);
+      padding-bottom: 100px;
+      -webkit-font-smoothing: antialiased;
+      line-height: 1.5;
+    }
+
+    /* --- HEADER (clean, minimal) --- */
+    header {
+      background: var(--white);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      background: rgba(255, 255, 255, 0.95);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo i {
+      color: var(--primary);
+      font-size: 2rem;
+    }
+
+    .call-btn {
+      background: var(--secondary);
+      color: var(--white);
+      padding: 10px 20px;
+      border-radius: 60px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 6px 14px rgba(46, 213, 115, 0.25);
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .call-btn:hover {
+      background: #27ae60;
+      transform: scale(1.02);
+      box-shadow: 0 10px 18px rgba(46, 213, 115, 0.35);
+    }
+
+    .notice-box {
+      margin-top: 14px;
+      background: #f0f9ff;
+      border-left: 4px solid #2196F3;
+      padding: 12px 16px;
+      border-radius: 14px;
+      font-size: 0.85rem;
+      color: #0b5e7c;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .notice-box i {
+      font-size: 1.2rem;
+      color: #2196F3;
+    }
+
+    /* --- CATEGORY PILLS (glassmorphism touch) --- */
+    .cat-wrapper {
+      position: sticky;
+      top: 88px;
+      z-index: 99;
+      background: var(--light);
+      padding: 16px 0 8px 0;
+      overflow: hidden;
+    }
+
+    .cat-scroll {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 0 24px;
+      scrollbar-width: none;
+    }
+
+    .cat-scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    .cat-btn {
+      background: var(--white);
+      border: none;
+      padding: 12px 26px;
+      border-radius: 60px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gray);
+      white-space: nowrap;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+      letter-spacing: -0.2px;
+    }
+
+    .cat-btn.active {
+      background: var(--primary);
+      color: var(--white);
+      box-shadow: 0 10px 20px rgba(255, 71, 87, 0.3);
+    }
+
+    .cat-btn:hover {
+      background: #dfe4ea;
+    }
+
+    /* --- PRODUCT GRID (elevated cards) --- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+      gap: 24px;
+      padding: 20px 24px 32px;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      border: 1px solid rgba(0, 0, 0, 0.02);
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .card:active {
+      transform: scale(0.98);
+    }
+
+    .img-box {
+      position: relative;
+      height: 160px;
+      width: 100%;
+      background: #f1f3f6;
+    }
+
+    .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .info {
+      padding: 18px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .info h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--dark);
+      line-height: 1.3;
+    }
+
+    .info p {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin-bottom: 18px;
+      line-height: 1.4;
+      flex-grow: 1;
+    }
+
+    .action-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    /* --- BUTTON + COUNTER (refined) --- */
+    .btn-add {
+      background: var(--light);
+      color: var(--gray-dark);
+      font-weight: 600;
+      padding: 10px 22px;
+      border-radius: 40px;
+      cursor: pointer;
+      border: none;
+      font-size: 0.85rem;
+      transition: var(--transition);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-add:hover {
+      background: #d5d9e0;
+    }
+
+    .counter {
+      display: flex;
+      align-items: center;
+      background: var(--primary);
+      border-radius: 40px;
+      padding: 3px;
+      box-shadow: 0 6px 14px rgba(255, 71, 87, 0.25);
+    }
+
+    .counter button {
+      background: transparent;
+      border: none;
+      color: white;
+      width: 34px;
+      height: 34px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 40px;
+      transition: var(--transition);
+    }
+
+    .counter button:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .counter span {
+      color: white;
+      font-weight: 700;
+      min-width: 28px;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    /* --- BOTTOM CART BAR (premium slide) --- */
+    .cart-bar {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(120px);
+      width: 90%;
+      max-width: 560px;
+      background: var(--dark);
+      color: white;
+      border-radius: 60px;
+      padding: 16px 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: var(--shadow-lg);
+      z-index: 200;
+      cursor: pointer;
+      transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+      border: 1px solid rgba(255,255,255,0.1);
+      backdrop-filter: blur(4px);
+    }
+
+    .cart-bar.visible {
+      transform: translateX(-50%) translateY(0);
+    }
+
+    .cart-details span {
+      display: block;
+      font-size: 0.8rem;
+      opacity: 0.7;
+      font-weight: 400;
+    }
+
+    .cart-details strong {
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    .cart-bar > div:last-child {
+      font-weight: 600;
+      background: rgba(255,255,255,0.15);
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-size: 0.9rem;
+    }
+
+    /* --- CHECKOUT MODAL (glass / elegant) --- */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(6px);
+      z-index: 300;
+      display: none;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    .modal-content {
+      background: var(--white);
+      width: 100%;
+      max-width: 560px;
+      border-radius: 32px 32px 0 0;
+      padding: 32px 28px;
+      max-height: 90vh;
+      overflow-y: auto;
+      animation: slideUp 0.3s ease-out;
+      box-shadow: var(--shadow-lg);
+    }
+
+    @keyframes slideUp {
+      0% { transform: translateY(100%); }
+      100% { transform: translateY(0); }
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .modal-header h2 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--dark);
+    }
+
+    .modal-header i {
+      font-size: 1.6rem;
+      color: var(--gray);
+      cursor: pointer;
+      transition: var(--transition);
+      padding: 8px;
+    }
+
+    .modal-header i:hover {
+      color: var(--dark);
+      transform: rotate(90deg);
+    }
+
+    /* editable cart items inside modal */
+    .cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid #f0f2f5;
+    }
+    .cart-item-info {
+      flex: 2;
+    }
+    .cart-item-title {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+    .cart-item-price {
+      font-size: 0.9rem;
+      color: var(--gray);
+    }
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .cart-item-qty {
+      background: var(--primary);
+      border-radius: 30px;
+      display: flex;
+      align-items: center;
+      padding: 2px;
+    }
+    .cart-item-qty button {
+      background: transparent;
+      border: none;
+      color: white;
+      width: 30px;
+      height: 30px;
+      font-size: 1.2rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 30px;
+    }
+    .cart-item-qty button:hover {
+      background: rgba(255,255,255,0.2);
+    }
+    .cart-item-qty span {
+      color: white;
+      font-weight: 600;
+      min-width: 28px;
+      text-align: center;
+    }
+    .cart-item-subtotal {
+      font-weight: 600;
+      min-width: 70px;
+      text-align: right;
+    }
+
+    .bill-section {
+      background: #f8fafc;
+      padding: 18px;
+      border-radius: 18px;
+      margin: 24px 0 16px;
+    }
+
+    .bill-row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+      color: #57606f;
+    }
+
+    .bill-row.total {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-top: 12px;
+      border-top: 1px solid #ced6e0;
+      padding-top: 12px;
+    }
+
+    /* bilingual delivery note */
+    .delivery-note {
+      background: #f0f9f0;
+      border-left: 4px solid var(--secondary);
+      padding: 14px 18px;
+      border-radius: 16px;
+      margin: 20px 0 18px;
+      font-size: 0.85rem;
+      color: #0b5432;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .delivery-note i {
+      color: var(--secondary);
+      font-size: 1.2rem;
+      margin-top: 2px;
+    }
+    .delivery-note p {
+      line-height: 1.5;
+    }
+    .urdu-text {
+      font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Urdu Typesetting', serif;
+      margin-top: 6px;
+      font-size: 0.9rem;
+      color: #0d492d;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 16px;
+      margin-bottom: 14px;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: var(--transition);
+      background: #f9fbfd;
+    }
+
+    .form-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(255, 71, 87, 0.15);
+      background: var(--white);
+    }
+
+    .btn-final {
+      width: 100%;
+      padding: 18px;
+      background: #25D366;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+      transition: var(--transition);
+    }
+
+    .btn-final:hover {
+      background: #20b859;
+      transform: scale(1.01);
+    }
+
+    textarea.form-input {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .small-note {
+      font-size: 0.8rem;
+      color: var(--gray);
+      margin: 8px 0 0;
+      text-align: center;
+    }
+
+    .clear-cart {
+      background: none;
+      border: 1px solid #ddd;
+      padding: 8px 18px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      color: var(--gray);
+      cursor: pointer;
+      transition: var(--transition);
+      margin-left: 12px;
+    }
+    .clear-cart:hover {
+      background: #f1f2f6;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="top-row">
+    <div class="logo"><i class="fas fa-utensils"></i> Quick Bite</div>
+    <a href="tel:+923159392716" class="call-btn"><i class="fas fa-phone-alt"></i> Call now</a>
+  </div>
+  <div class="notice-box">
+    <i class="fas fa-info-circle"></i>
+    <span>If no response on WhatsApp, please call us. We answer quickly.</span>
+  </div>
+</header>
+
+<div class="cat-wrapper">
+  <div class="cat-scroll" id="catContainer"></div>
+</div>
+
+<div class="grid" id="productContainer"></div>
+
+<!-- CART BAR (visible only with items) -->
+<div class="cart-bar" id="cartBar" onclick="openCheckout()">
+  <div class="cart-details">
+    <span id="totalItems">0 items</span>
+    <strong id="totalPrice">Rs 0</strong>
+  </div>
+  <div><i class="fas fa-shopping-bag"></i> View cart</div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkoutModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Your order</h2>
+      <div style="display:flex; align-items:center;">
+        <button class="clear-cart" onclick="clearCart()"><i class="fas fa-trash-alt"></i> Clear</button>
+        <i class="fas fa-times" onclick="closeCheckout()" style="margin-left:12px;"></i>
+      </div>
+    </div>
+
+    <div id="checkoutList"></div> <!-- dynamic cart items with +/- -->
+
+    <!-- FIXED DELIVERY FEE 150 (no dropdown) -->
+    <div class="bill-section">
+      <div class="bill-row"><span>Subtotal</span> <span id="modalSubtotal">Rs 0</span></div>
+      <div class="bill-row"><span>Delivery fee</span> <span>Rs 150</span></div>
+      <div class="bill-row total"><span>Total</span> <span id="modalTotal">Rs 0</span></div>
+    </div>
+
+    <!-- BILINGUAL NOTE (English + Urdu) about possible reduction -->
+    <div class="delivery-note">
+      <i class="fas fa-truck"></i>
+      <div>
+        <p><strong>🚚 Delivery:</strong> Standard Rs 150 for all areas. If your location is within 3km, we may reduce the fee — we’ll confirm by call.</p>
+        <p class="urdu-text"><strong>📦 ڈلیوری:</strong> تمام مقامات کے لیے معیاری چارجز 150 روپے ہیں۔ اگر آپ کا علاقہ 3 کلومیٹر کے اندر ہے تو ہم ڈلیوری میں کمی کر سکتے ہیں – ہم کال کر کے تصدیق کریں گے۔</p>
+      </div>
+    </div>
+
+    <h4 style="margin-bottom: 15px; font-weight:600;">Delivery details</h4>
+    <input type="text" id="uName" class="form-input" placeholder="Your full name">
+    <input type="tel" id="uPhone" class="form-input" placeholder="Phone number">
+    <textarea id="uAddress" class="form-input" rows="2" placeholder="Full address (house #, street, area)"></textarea>
+    
+    <!-- special instructions (advanced) -->
+    <textarea id="specialInstructions" class="form-input" rows="2" placeholder="Special instructions (optional)"></textarea>
+
+    <button class="btn-final" onclick="sendOrder()">
+      <i class="fab fa-whatsapp"></i> Send order on WhatsApp
+    </button>
+    <div class="small-note">We may adjust delivery fee based on exact location.</div>
+  </div>
+</div>
+
+<script>
+  /* ========== PROFESSIONAL CONFIG ========== */
+  const PHONE_NUMBER = "923159392716";
+  const DELIVERY_FEE = 150; // fixed for all areas
+
+  const MENU = [
+    { id: 1, cat: "Pizza", title: "Chicken Fajita", desc: "Spicy chicken, onions & cheese", price: 1200, img: "https://source.unsplash.com/300x200/?pizza" },
+    { id: 2, cat: "Pizza", title: "Creamy Tikka", desc: "Malai boti with creamy sauce", price: 1400, img: "https://source.unsplash.com/300x200/?cheese,pizza" },
+    { id: 3, cat: "Pizza", title: "Cheese Lover", desc: "Double cheese margherita", price: 1100, img: "https://source.unsplash.com/300x200/?mozzarella" },
+    { id: 4, cat: "Burgers", title: "Zinger Burger", desc: "Crispy fillet + spicy mayo", price: 350, img: "https://source.unsplash.com/300x200/?burger" },
+    { id: 5, cat: "Burgers", title: "Beef Smash", desc: "Juicy patty with cheddar", price: 480, img: "https://source.unsplash.com/300x200/?hamburger" },
+    { id: 6, cat: "Burgers", title: "Grilled Chicken", desc: "Grilled breast burger", price: 400, img: "https://source.unsplash.com/300x200/?sandwich" },
+    { id: 7, cat: "Deals", title: "Family Feast", desc: "2 large pizzas + drink", price: 2500, img: "https://source.unsplash.com/300x200/?feast" },
+    { id: 8, cat: "Deals", title: "Student Deal", desc: "Zinger + fries + drink", price: 550, img: "https://source.unsplash.com/300x200/?fastfood" }
+  ];
+
+  // --- state (cart persisted in localStorage) ---
+  let cart = JSON.parse(localStorage.getItem('quickBiteCart')) || {};   // { id: quantity }
+  let currentCat = "All";
+
+  // --- helper functions ---
+  function saveCart() {
+    localStorage.setItem('quickBiteCart', JSON.stringify(cart));
+  }
+
+  // --- init rendering ---
+  function init() {
+    renderCategories();
+    renderProducts();
+    updateCartBar();
+  }
+
+  // --- categories ---
+  function renderCategories() {
+    const categories = ["All", ...new Set(MENU.map(m => m.cat))];
+    const container = document.getElementById("catContainer");
+    container.innerHTML = categories.map(c => 
+      `<button class="cat-btn ${c === currentCat ? 'active' : ''}" onclick="setCategory('${c}')">${c}</button>`
+    ).join('');
+  }
+
+  window.setCategory = (cat) => {
+    currentCat = cat;
+    renderCategories();
+    renderProducts();
+  };
+
+  // --- products (with add/counter) ---
+  function renderProducts() {
+    const container = document.getElementById("productContainer");
+    const filtered = currentCat === "All" ? MENU : MENU.filter(m => m.cat === currentCat);
+
+    container.innerHTML = filtered.map(item => {
+      const qty = cart[item.id] || 0;
+      let buttonHTML = qty === 0 
+        ? `<button class="btn-add" onclick="updateQty(${item.id}, 1)">ADD</button>`
+        : `<div class="counter">
+            <button onclick="updateQty(${item.id}, -1)">−</button>
+            <span>${qty}</span>
+            <button onclick="updateQty(${item.id}, 1)">+</button>
+           </div>`;
+
+      return `
+      <div class="card">
+        <div class="img-box"><img src="${item.img}" alt="${item.title}" loading="lazy"></div>
+        <div class="info">
+          <h3>${item.title}</h3>
+          <p>${item.desc}</p>
+          <div class="action-row">
+            <span class="price">Rs ${item.price}</span>
+            ${buttonHTML}
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+
+    updateCartBar();
+  }
+
+  // --- update quantity (from product grid or modal) ---
+  window.updateQty = (id, change) => {
+    if (!cart[id]) cart[id] = 0;
+    cart[id] += change;
+    if (cart[id] <= 0) delete cart[id];
+    saveCart();
+    renderProducts();      // refresh grid counters
+    // if modal is open, refresh its content
+    if (document.getElementById('checkoutModal').style.display === 'flex') {
+      renderCheckoutItems();
+      updateModalTotals();
+    }
+    updateCartBar();
+  };
+
+  // --- update cart bar (total items & price) ---
+  function updateCartBar() {
+    let totalQty = 0, subtotal = 0;
+    for (const [id, qty] of Object.entries(cart)) {
+      const item = MENU.find(m => m.id == id);
+      if (item) {
+        totalQty += qty;
+        subtotal += item.price * qty;
+      }
+    }
+
+    const bar = document.getElementById("cartBar");
+    if (totalQty > 0) {
+      bar.classList.add("visible");
+      document.getElementById("totalItems").innerText = `${totalQty} item${totalQty > 1 ? 's' : ''}`;
+      // show total with fixed delivery fee (150)
+      document.getElementById("totalPrice").innerText = `Rs ${subtotal + DELIVERY_FEE}`;
+    } else {
+      bar.classList.remove("visible");
+    }
+  }
+
+  // --- open modal & render checkout items ---
+  window.openCheckout = () => {
+    if (Object.keys(cart).length === 0) {
+      alert("Your cart is empty.");
+      return;
+    }
+    renderCheckoutItems();
+    updateModalTotals();
+    document.getElementById("checkoutModal").style.display = "flex";
+  };
+
+  // render items inside modal with +/- controls
+  function renderCheckoutItems() {
+    const container = document.getElementById("checkoutList");
+    let html = '';
+    for (const [id, qty] of Object.entries(cart)) {
+      const item = MENU.find(m => m.id == id);
+      if (!item) continue;
+      html += `
+        <div class="cart-item">
+          <div class="cart-item-info">
+            <div class="cart-item-title">${item.title}</div>
+            <div class="cart-item-price">Rs ${item.price} each</div>
+          </div>
+          <div class="cart-item-controls">
+            <div class="cart-item-qty">
+              <button onclick="updateQty(${id}, -1)">−</button>
+              <span>${qty}</span>
+              <button onclick="updateQty(${id}, 1)">+</button>
+            </div>
+            <div class="cart-item-subtotal">Rs ${item.price * qty}</div>
+          </div>
+        </div>
+      `;
+    }
+    container.innerHTML = html;
+  }
+
+  // update subtotal and total (delivery fixed at 150)
+  function updateModalTotals() {
+    let subtotal = 0;
+    for (const [id, qty] of Object.entries(cart)) {
+      const item = MENU.find(m => m.id == id);
+      if (item) subtotal += item.price * qty;
+    }
+    document.getElementById('modalSubtotal').innerText = `Rs ${subtotal}`;
+    document.getElementById('modalTotal').innerText = `Rs ${subtotal + DELIVERY_FEE}`;
+  }
+
+  window.closeCheckout = () => {
+    document.getElementById("checkoutModal").style.display = "none";
+  };
+
+  // clear entire cart
+  window.clearCart = () => {
+    if (confirm("Empty your cart?")) {
+      cart = {};
+      saveCart();
+      renderProducts();
+      closeCheckout();
+      updateCartBar();
+    }
+  };
+
+  // --- send WhatsApp order (with bilingual note) ---
+  window.sendOrder = () => {
+    const name = document.getElementById("uName").value.trim();
+    const phone = document.getElementById("uPhone").value.trim();
+    const address = document.getElementById("uAddress").value.trim();
+    const special = document.getElementById("specialInstructions").value.trim();
+
+    if (!name || !phone || !address) {
+      alert("Please fill in name, phone and address.");
+      return;
+    }
+
+    let subtotal = 0;
+    let orderLines = '';
+    for (const [id, qty] of Object.entries(cart)) {
+      const item = MENU.find(m => m.id == id);
+      if (item) {
+        orderLines += `• ${item.title} x${qty} = Rs ${item.price * qty}%0a`;
+        subtotal += item.price * qty;
+      }
+    }
+
+    const total = subtotal + DELIVERY_FEE;
+
+    let msg = `🍔 *New order - Quick Bite Cafe*%0a%0a`;
+    msg += `👤 *Name:* ${name}%0a📞 *Phone:* ${phone}%0a📍 *Address:* ${address}%0a`;
+    if (special) msg += `📝 *Note:* ${special}%0a`;
+    msg += `%0a*Order items:*%0a${orderLines}`;
+    msg += `----------------%0a`;
+    msg += `Subtotal: Rs ${subtotal}%0a`;
+    msg += `Delivery: Rs ${DELIVERY_FEE} (standard)%0a`;
+    msg += `*TOTAL: Rs ${total}*%0a`;
+    msg += `----------------%0a`;
+    msg += `_If your location is closer, we may reduce delivery — we'll call you._%0a`;
+    msg += `_اگر آپ کا علاقہ قریب ہے تو ہم ڈلیوری کم کر سکتے ہیں − ہم کال کریں گے._%0a`;
+    msg += `Thank you!`;
+
+    window.open(`https://wa.me/${PHONE_NUMBER}?text=${msg}`, '_blank');
+  };
+
+  // close modal when clicking overlay
+  document.getElementById("checkoutModal").addEventListener('click', function(e) {
+    if (e.target === this) closeCheckout();
+  });
+
+  // load cart from localStorage on start
+  init();
+</script>
+</body>
+</html>
