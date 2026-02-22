@@ -1,569 +1,415 @@
 <!DOCTYPE html>
-<html lang="ur" dir="rtl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موبائل انسائیکلوپیڈیا - پرو ایڈیشن</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DeviceDex - Ultimate Mobile Database</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@400;700&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Professional Color Palette */
-            --primary: #0f172a;      /* Deep Navy */
-            --secondary: #334155;    /* Slate */
-            --accent: #3b82f6;       /* Bright Blue */
-            --gold: #fbbf24;         /* Gold for ratings/highlights */
-            --bg-body: #f1f5f9;
-            --glass: rgba(255, 255, 255, 0.95);
-            --shadow: 0 10px 30px -10px rgba(0,0,0,0.15);
-            --radius: 16px;
+            --primary: #0f172a;       /* Dark Navy */
+            --accent: #3b82f6;        /* Professional Blue */
+            --accent-hover: #2563eb;
+            --bg: #f8fafc;            /* Light Grey Background */
+            --card-bg: #ffffff;
+            --text-main: #334155;
+            --text-light: #64748b;
+            --radius: 12px;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
         }
 
-        * { box-sizing: border-box; outline: none; transition: all 0.3s ease; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Inter', sans-serif; }
 
-        body {
-            font-family: 'Poppins', 'Noto Nastaliq Urdu', sans-serif;
-            background: var(--bg-body);
-            color: var(--primary);
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+        body { background-color: var(--bg); color: var(--text-main); padding-bottom: 50px; }
 
-        /* --- Hero Section --- */
-        .hero {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            padding: 60px 20px 100px;
+        /* --- Header & Search Section --- */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, #1e293b 100%);
+            padding: 40px 20px 80px;
             text-align: center;
             color: white;
-            border-bottom-left-radius: 40px;
-            border-bottom-right-radius: 40px;
-            position: relative;
-            overflow: hidden;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(59,130,246,0.1) 0%, transparent 60%);
-            animation: rotate 20s linear infinite;
-        }
+        .logo { font-size: 2.5rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 10px; }
+        .logo span { color: var(--accent); }
+        .tagline { opacity: 0.8; font-size: 0.95rem; margin-bottom: 20px; }
 
-        @keyframes rotate { from {transform: rotate(0deg);} to {transform: rotate(360deg);} }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin: 0 0 10px;
-            font-family: 'Noto Nastaliq Urdu', serif;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .hero p { opacity: 0.8; font-size: 1.1rem; max-width: 600px; margin: 0 auto; }
-
-        /* --- Smart Search Bar --- */
-        .search-container {
-            margin-top: -60px;
-            padding: 0 20px;
+        .search-wrapper {
+            margin-top: -30px;
             display: flex;
             justify-content: center;
-            position: relative;
-            z-index: 10;
+            padding: 0 20px;
         }
 
         .search-box {
             background: white;
             width: 100%;
-            max-width: 700px;
-            height: 70px;
+            max-width: 600px;
+            height: 60px;
             border-radius: 50px;
             display: flex;
             align-items: center;
-            padding: 10px 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 5px 20px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
             border: 2px solid transparent;
+            transition: all 0.3s ease;
         }
 
-        .search-box:focus-within {
-            border-color: var(--accent);
-            transform: scale(1.02);
-        }
-
+        .search-box:focus-within { border-color: var(--accent); transform: translateY(-2px); }
+        
         .search-box input {
             flex: 1;
             border: none;
-            font-size: 1.2rem;
-            font-family: inherit;
-            background: transparent;
-            margin-right: 15px; /* RTL margin */
-        }
-
-        .search-btn {
-            background: var(--accent);
-            color: white;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        /* --- Stats Bar --- */
-        .db-stats {
-            text-align: center;
-            margin: 20px 0;
-            color: var(--secondary);
-            font-size: 0.9rem;
-        }
-        .db-stats span {
-            background: #e2e8f0;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-weight: bold;
-        }
-
-        /* --- Grid Layout --- */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        #results {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        /* --- Pro Card Style --- */
-        .card {
-            background: var(--glass);
-            border-radius: var(--radius);
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            box-shadow: var(--shadow);
-            border: 1px solid rgba(255,255,255,0.5);
-            backdrop-filter: blur(10px);
-        }
-
-        .card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px -5px rgba(0,0,0,0.2);
-            border-color: var(--accent);
-        }
-
-        .brand-tag {
-            position: absolute;
-            top: 20px; right: 20px;
-            background: rgba(59, 130, 246, 0.1);
-            color: var(--accent);
-            padding: 4px 12px;
-            border-radius: 8px;
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .card-img-wrapper {
-            height: 200px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            background: radial-gradient(#fff, #f1f5f9);
-            border-radius: 12px;
-            padding: 10px;
-        }
-
-        .card img {
-            max-height: 100%;
-            max-width: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.1));
-        }
-
-        .card h3 {
-            margin: 10px 0 5px;
-            font-size: 1.3rem;
+            outline: none;
+            font-size: 1.1rem;
+            padding: 0 15px;
             color: var(--primary);
         }
 
-        .quick-specs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
+        .search-icon { color: var(--text-light); font-size: 1.2rem; }
+
+        /* --- Grid Layout (Responsive) --- */
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+
+        .stats-bar {
+            text-align: center;
+            margin-bottom: 30px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
-        .spec-pill {
-            font-size: 0.75rem;
-            background: #f8fafc;
+        #deviceGrid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Auto adjusts for Mobile/PC */
+            gap: 25px;
+        }
+
+        /* --- Card Design --- */
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s;
+            cursor: pointer;
             border: 1px solid #e2e8f0;
-            padding: 4px 8px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover { transform: translateY(-5px); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border-color: var(--accent); }
+
+        .brand-badge {
+            position: absolute;
+            top: 15px; right: 15px;
+            background: #eff6ff;
+            color: var(--accent);
+            font-size: 0.7rem;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .card-img {
+            height: 180px;
+            width: 100%;
+            object-fit: contain;
+            margin-bottom: 15px;
+            transition: transform 0.3s;
+        }
+        .card:hover .card-img { transform: scale(1.05); }
+
+        .card h3 { font-size: 1.1rem; margin-bottom: 5px; color: var(--primary); }
+        
+        .specs-preview {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px solid #f1f5f9;
+        }
+
+        .spec-item {
+            font-size: 0.75rem;
+            color: var(--text-light);
+            background: #f8fafc;
+            padding: 5px 8px;
             border-radius: 6px;
-            color: var(--secondary);
             display: flex;
             align-items: center;
             gap: 5px;
         }
 
-        .btn-details {
-            margin-top: auto;
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 10px;
-        }
-        .btn-details:hover { background: var(--accent); }
-
-        /* --- Fallback Card (Google Search) --- */
-        .fallback-card {
+        /* --- Fallback Section (Google) --- */
+        .no-results {
             grid-column: 1 / -1;
-            background: linear-gradient(135deg, #fff, #f0f9ff);
-            border: 2px dashed var(--accent);
-            border-radius: 20px;
-            padding: 40px;
+            background: white;
             text-align: center;
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
             display: none; /* Hidden by default */
         }
-
-        .fallback-icon { font-size: 3rem; color: var(--accent); margin-bottom: 15px; }
         
         .btn-google {
-            background: #4285F4;
+            display: inline-block;
+            margin-top: 15px;
+            background: var(--accent);
             color: white;
-            padding: 12px 30px;
+            padding: 12px 25px;
             border-radius: 50px;
             text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: bold;
-            margin-top: 15px;
-            box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+            transition: background 0.3s;
         }
-        .btn-google:hover { transform: scale(1.05); }
+        .btn-google:hover { background: var(--accent-hover); }
 
-        /* --- Modal (Popup) --- */
+        /* --- Modal Popup --- */
         .modal-overlay {
-            display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.8);
-            backdrop-filter: blur(5px);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
             z-index: 1000;
+            display: none;
             justify-content: center;
             align-items: center;
             padding: 20px;
         }
 
-        .modal-box {
+        .modal {
             background: white;
             width: 100%;
-            max-width: 900px;
+            max-width: 800px;
             max-height: 90vh;
-            border-radius: 24px;
+            border-radius: 20px;
             overflow: hidden;
             display: grid;
-            grid-template-columns: 300px 1fr;
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.5);
+            grid-template-columns: 1fr 1.5fr; /* PC Layout */
             position: relative;
+            animation: slideUp 0.3s ease-out;
         }
+
+        @keyframes slideUp { from {transform: translateY(20px); opacity: 0;} to {transform: translateY(0); opacity: 1;} }
 
         @media (max-width: 768px) {
-            .modal-box { grid-template-columns: 1fr; overflow-y: auto; }
+            .modal { grid-template-columns: 1fr; overflow-y: auto; } /* Mobile Layout */
+            .modal-img-container { height: 250px; }
         }
 
-        .modal-img-side {
-            background: #f8fafc;
+        .modal-img-container {
+            background: #f1f5f9;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            border-left: 1px solid #e2e8f0; /* RTL border */
+            padding: 30px;
         }
+        .modal-img-container img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        .modal-content { padding: 30px; overflow-y: auto; }
         
-        .modal-img-side img { max-width: 100%; max-height: 300px; }
-
-        .modal-info-side { padding: 30px; overflow-y: auto; }
-
-        .modal-header {
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 15px;
-            margin-bottom: 20px;
-        }
-
-        .spec-table { width: 100%; border-collapse: collapse; }
-        .spec-table td { padding: 12px 5px; border-bottom: 1px solid #f1f5f9; }
-        .spec-table td:first-child { font-weight: bold; color: var(--secondary); width: 140px; }
-        .spec-table td:last-child { color: var(--primary); font-weight: 500; }
-
         .close-btn {
             position: absolute;
-            top: 15px; left: 15px;
-            background: #fecaca;
-            color: #ef4444;
+            top: 15px; right: 15px;
+            background: #ef4444;
+            color: white;
             border: none;
-            width: 35px; height: 35px;
+            width: 30px; height: 30px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1.1rem;
+            z-index: 10;
         }
 
-        .loader { grid-column: 1/-1; text-align: center; padding: 50px; font-size: 1.5rem; color: var(--accent); }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        td { padding: 12px 0; border-bottom: 1px solid #e2e8f0; font-size: 0.9rem; }
+        td:first-child { font-weight: 600; color: var(--text-light); width: 40%; }
+        td:last-child { color: var(--primary); font-weight: 500; }
+
     </style>
 </head>
 <body>
 
-    <header class="hero">
-        <h1>موبائل انسائیکلوپیڈیا <span style="font-size:1rem; vertical-align:middle; background:var(--gold); padding:2px 10px; border-radius:10px; color:black;">Pro</span></h1>
-        <p>پاکستان اور دنیا بھر کے موبائل فونز کا سب سے مستند اور جدید ڈیٹا بیس</p>
+    <header>
+        <div class="logo">Device<span>Dex</span></div>
+        <div class="tagline">Professional Mobile Specifications Database</div>
     </header>
 
-    <div class="search-container">
+    <div class="search-wrapper">
         <div class="search-box">
-            <button class="search-btn"><i class="fas fa-search"></i></button>
-            <input type="text" id="searchInput" placeholder="موبائل کا نام لکھیں (مثلاً iPhone 15, Samsung S24...)">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput" placeholder="Search mobile model (e.g. iPhone 14, Galaxy S23)...">
         </div>
-    </div>
-
-    <div class="db-stats" id="dbStats">
-        لوڈنگ جاری ہے...
     </div>
 
     <div class="container">
-        <div id="results">
-            <div class="loader"><i class="fas fa-circle-notch fa-spin"></i> ڈیٹا بیس لوڈ ہو رہا ہے...</div>
-        </div>
+        <div class="stats-bar" id="dbCount">Loading Database...</div>
+        
+        <div id="deviceGrid">
+            </div>
 
-        <div id="fallbackSection" class="fallback-card">
-            <div class="fallback-icon"><i class="fas fa-satellite-dish"></i></div>
-            <h2>یہ موبائل ہمارے مقامی ڈیٹا بیس میں نہیں ملا</h2>
-            <p>لیکن فکر نہ کریں! ہم آپ کے لیے اسے عالمی ڈیٹا بیس (GSMArena) میں تلاش کر سکتے ہیں۔</p>
+        <div id="fallback" class="no-results">
+            <h2>Device Not Found in Local Database</h2>
+            <p style="color: #64748b; margin-top: 10px;">Our database is updating. You can check GSMArena for this model.</p>
             <a href="#" id="googleLink" target="_blank" class="btn-google">
-                <i class="fab fa-google"></i> گوگل / GSMArena پر دیکھیں
+                Search on Google / GSMArena <i class="fas fa-external-link-alt"></i>
             </a>
         </div>
     </div>
 
     <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-box" id="modalContent">
+        <div class="modal" id="modalBody">
             </div>
     </div>
 
     <script>
-        // ==========================================
-        // CONFIGURATION: Add your file names here
-        // ==========================================
-        const DATABASE_FILES = [
-            'mobiles.json',       // File 1
-            'convertcsv (2).json' // File 2
-            // 'new_file.json'    <-- اگر تیسری فائل ایڈ کرنی ہو تو یہاں لکھیں
-        ];
+        // ===============================================
+        // CONFIGURATION
+        // ===============================================
+        const JSON_FILE_PATH = 'mobiles.json'; // آپ اپنی JSON فائل کا نام یہاں لکھیں
 
-        let allMobiles = [];
-        const resultsDiv = document.getElementById('results');
-        const fallbackSection = document.getElementById('fallbackSection');
-        const googleLink = document.getElementById('googleLink');
+        let allDevices = [];
+        const grid = document.getElementById('deviceGrid');
+        const searchInput = document.getElementById('searchInput');
+        const fallback = document.getElementById('fallback');
+        const countLabel = document.getElementById('dbCount');
         const modalOverlay = document.getElementById('modalOverlay');
 
-        // 1. Universal Loader (Handles Multiple Files)
-        async function loadAllDatabases() {
+        // 1. Fetch Data Professionally
+        async function loadDatabase() {
             try {
-                // Fetch all files listed in DATABASE_FILES array
-                const promises = DATABASE_FILES.map(file => fetch(file).then(res => res.json()));
-                const datasets = await Promise.all(promises);
-
-                // Process datasets based on their structure
-                datasets.forEach((data, index) => {
-                    const normalized = normalizeData(data, index);
-                    allMobiles = [...allMobiles, ...normalized];
-                });
-
-                // Update Stats
-                document.getElementById('dbStats').innerHTML = `<span>ٹوٹل موبائلز: ${allMobiles.length.toLocaleString()}</span>`;
+                const response = await fetch(JSON_FILE_PATH);
+                if (!response.ok) throw new Error("Failed to load data");
                 
-                // Show Initial Random Selection
-                renderMobiles(allMobiles.slice(0, 24));
-
-            } catch (err) {
-                console.error("Loading Error:", err);
-                resultsDiv.innerHTML = '<div class="loader" style="color:red">ڈیٹا بیس فائلز لوڈ کرنے میں خرابی پیش آئی۔ فائل کے نام چیک کریں۔</div>';
-            }
-        }
-
-        // 2. Data Normalizer (Makes all files look the same)
-        function normalizeData(data, sourceIndex) {
-            // Check if it's the CSV formatted JSON (detect by checking a unique key like 'A')
-            const isCSVFormat = data.length > 0 && (data[0].A !== undefined);
-
-            if (isCSVFormat) {
-                // Logic for CSV converted file
-                return data
-                    .filter(item => item.A !== "Brand Name") // Skip header
-                    .map(item => ({
-                        id: Math.random().toString(36),
-                        brand: item.A || 'Unknown',
-                        model: item.B || 'Model',
-                        specs: {
-                            screen: `${item.L || ''} ${item.K || ''}`,
-                            ram: item.U || 'N/A', // Assuming Memory is in U
-                            battery: item.AL || 'N/A',
-                            camera: 'Check Details'
-                        },
-                        img: item.AR || item.AX || '',
-                        fullData: item,
-                        sourceType: 'csv'
-                    }));
-            } else {
-                // Logic for Standard JSON (mobiles.json)
-                return data.map(item => ({
-                    id: Math.random().toString(36),
-                    brand: item.brand || 'Unknown',
-                    model: item.model || 'Model',
+                const rawData = await response.json();
+                
+                // DATA MAPPING:
+                // This converts your JSON format to a standard format
+                // Adjust 'item.A', 'item.B' etc based on your actual file keys
+                allDevices = rawData.map((item, index) => ({
+                    id: index,
+                    brand: item.brand || item.A || 'Unknown',  // Handles standard keys OR CSV keys (A, B...)
+                    model: item.model || item.B || 'Model Name',
+                    img: item.img_url || item.image || 'https://via.placeholder.com/300x400?text=No+Image',
                     specs: {
-                        screen: item.display_size || 'N/A',
-                        ram: item.RAM || 'N/A',
-                        battery: item.battery || 'N/A',
-                        camera: item.primary_camera || 'N/A'
+                        ram: item.RAM || item.U || 'N/A',
+                        battery: item.battery || item.AL || 'N/A',
+                        storage: item.internal_memory || item.V || 'N/A',
+                        display: item.display_size || item.L || 'N/A',
+                        camera: item.primary_camera || 'N/A',
+                        os: item.OS || 'Android/iOS'
                     },
-                    img: item.img_url || '',
-                    fullData: item,
-                    sourceType: 'standard'
+                    fullData: item // Keep original data for modal
                 }));
+
+                countLabel.innerText = `${allDevices.length.toLocaleString()} Devices Indexed`;
+                renderDevices(allDevices.slice(0, 50)); // Show first 50 initially
+
+            } catch (error) {
+                console.error(error);
+                grid.innerHTML = `<h3 style="text-align:center; color:red">Error loading database. Please check console.</h3>`;
             }
         }
 
-        // 3. Render Cards
-        function renderMobiles(list) {
-            resultsDiv.innerHTML = '';
-            fallbackSection.style.display = 'none';
-
-            if (list.length === 0) {
-                return; // Handled by search logic
+        // 2. Render Cards
+        function renderDevices(devices) {
+            grid.innerHTML = '';
+            
+            if (devices.length === 0) {
+                fallback.style.display = 'block';
+                return;
+            } else {
+                fallback.style.display = 'none';
             }
 
-            list.forEach(phone => {
-                const imgUrl = phone.img && phone.img.length > 5 ? phone.img : 'https://via.placeholder.com/300x400?text=No+Image';
-                
+            devices.forEach(device => {
                 const card = document.createElement('div');
                 card.className = 'card';
+                card.onclick = () => openModal(device);
+                
                 card.innerHTML = `
-                    <div class="brand-tag">${phone.brand}</div>
-                    <div class="card-img-wrapper">
-                        <img src="${imgUrl}" loading="lazy" alt="${phone.model}">
+                    <div class="brand-badge">${device.brand}</div>
+                    <img src="${device.img}" class="card-img" alt="${device.model}" loading="lazy">
+                    <h3>${device.model}</h3>
+                    <div class="specs-preview">
+                        <div class="spec-item"><i class="fas fa-memory"></i> ${device.specs.ram.split('/')[0]}</div>
+                        <div class="spec-item"><i class="fas fa-battery-half"></i> ${device.specs.battery.substring(0,4)}..</div>
                     </div>
-                    <h3>${phone.model}</h3>
-                    <div class="quick-specs">
-                        <div class="spec-pill"><i class="fas fa-memory"></i> ${phone.specs.ram.split(' ')[0]}</div>
-                        <div class="spec-pill"><i class="fas fa-battery-half"></i> ${phone.specs.battery.substring(0, 8)}..</div>
-                    </div>
-                    <button class="btn-details" onclick="openModal('${phone.id}')">
-                        تفصیلات دیکھیں <i class="fas fa-arrow-left"></i>
-                    </button>
                 `;
-                resultsDiv.appendChild(card);
+                grid.appendChild(card);
             });
         }
 
-        // 4. Search Logic
-        const searchInput = document.getElementById('searchInput');
+        // 3. Search Functionality (Debounced/Real-time)
         searchInput.addEventListener('input', (e) => {
-            const q = e.target.value.toLowerCase().trim();
+            const query = e.target.value.toLowerCase().trim();
             
-            if (!q) {
-                renderMobiles(allMobiles.slice(0, 24));
+            // Set Google Link dynamically
+            document.getElementById('googleLink').href = `https://www.google.com/search?q=${encodeURIComponent(query + ' gsmarena specs')}`;
+
+            if (!query) {
+                renderDevices(allDevices.slice(0, 50));
                 return;
             }
 
-            const filtered = allMobiles.filter(m => 
-                m.brand.toLowerCase().includes(q) || 
-                m.model.toLowerCase().includes(q)
-            ).slice(0, 50);
+            // Fast Filter
+            const filtered = allDevices.filter(d => 
+                d.model.toLowerCase().includes(query) || 
+                d.brand.toLowerCase().includes(query)
+            ).slice(0, 100); // Limit results for performance
 
-            if (filtered.length === 0) {
-                resultsDiv.innerHTML = '';
-                fallbackSection.style.display = 'block';
-                // Smart Search URL: Searches site:gsmarena.com for the query
-                googleLink.href = `https://www.google.com/search?q=site:gsmarena.com+${encodeURIComponent(q)}`;
-            } else {
-                renderMobiles(filtered);
-            }
+            renderDevices(filtered);
         });
 
-        // 5. Modal Logic
-        window.openModal = function(id) {
-            const phone = allMobiles.find(m => m.id === id);
-            if (!phone) return;
-
-            const d = phone.fullData;
-            let tableHtml = '';
-
-            // Generate Table based on source type
-            if (phone.sourceType === 'standard') {
-                tableHtml = `
-                    <tr><td>آپریٹنگ سسٹم</td><td>${d.OS || '-'}</td></tr>
-                    <tr><td>چپ سیٹ</td><td>${d.Chipset || '-'}</td></tr>
-                    <tr><td>میموری / ریم</td><td>${d.internal_memory || '-'} / ${d.RAM || '-'}</td></tr>
-                    <tr><td>بیک کیمرہ</td><td>${d.primary_camera || '-'}</td></tr>
-                    <tr><td>سیلفی کیمرہ</td><td>${d.secondary_camera || '-'}</td></tr>
-                    <tr><td>بیٹری</td><td>${d.battery || '-'}</td></tr>
-                    <tr><td>قیمت (اندازاً)</td><td>${d.approx_price_EUR ? '€'+d.approx_price_EUR : '-'}</td></tr>
-                `;
-            } else {
-                tableHtml = `
-                    <tr><td>نیٹ ورک</td><td>${d.C || '-'}</td></tr>
-                    <tr><td>لانچ کی تاریخ</td><td>${d.D || '-'}</td></tr>
-                    <tr><td>ڈائمینشن</td><td>${d.F || '-'}</td></tr>
-                    <tr><td>اسکرین</td><td>${d.L || '-'} (${d.K || ''})</td></tr>
-                    <tr><td>میموری</td><td>${d.U || '-'}</td></tr>
-                    <tr><td>بیٹری</td><td>${d.AL || '-'}</td></tr>
-                    <tr><td>رنگ</td><td>${d.AO || '-'}</td></tr>
-                `;
-            }
-
-            const imgUrl = phone.img && phone.img.length > 5 ? phone.img : 'https://via.placeholder.com/300';
-
-            document.getElementById('modalContent').innerHTML = `
-                <button class="close-btn" onclick="document.getElementById('modalOverlay').style.display='none'"><i class="fas fa-times"></i></button>
-                <div class="modal-img-side">
-                    <img src="${imgUrl}" alt="${phone.model}">
+        // 4. Modal Logic
+        function openModal(device) {
+            const d = device.specs;
+            
+            document.getElementById('modalBody').innerHTML = `
+                <button class="close-btn" onclick="closeModal()"><i class="fas fa-times"></i></button>
+                <div class="modal-img-container">
+                    <img src="${device.img}" alt="${device.model}">
                 </div>
-                <div class="modal-info-side">
-                    <div class="modal-header">
-                        <h2 style="margin:0">${phone.brand} ${phone.model}</h2>
-                        <span style="color:var(--secondary)">مکمل تکنیکی تفصیلات</span>
-                    </div>
-                    <table class="spec-table">
-                        ${tableHtml}
+                <div class="modal-content">
+                    <h2 style="font-size:1.8rem; margin-bottom:5px;">${device.model}</h2>
+                    <p style="color:var(--accent); font-weight:600; margin-bottom:20px;">${device.brand}</p>
+                    
+                    <table>
+                        <tr><td>Display</td><td>${d.display}</td></tr>
+                        <tr><td>Processor / RAM</td><td>${d.ram}</td></tr>
+                        <tr><td>Storage</td><td>${d.storage}</td></tr>
+                        <tr><td>Main Camera</td><td>${d.camera}</td></tr>
+                        <tr><td>Battery</td><td>${d.battery}</td></tr>
+                        <tr><td>OS</td><td>${d.os}</td></tr>
                     </table>
                 </div>
             `;
+            
             modalOverlay.style.display = 'flex';
-        };
+            document.body.style.overflow = 'hidden'; // Stop background scrolling
+        }
 
-        // Close modal on outside click
+        function closeModal() {
+            modalOverlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close on outside click
         modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) modalOverlay.style.display = 'none';
+            if (e.target === modalOverlay) closeModal();
         });
 
-        // Start App
-        loadAllDatabases();
+        // Initialize
+        loadDatabase();
 
     </script>
 </body>
